@@ -34,7 +34,7 @@ public class TrProductEntity {
 	@Column(name="PRODUCT_COMMENT", nullable=false, length=512)
 	private String productComment;
 
-	@Column(name="PRODUCT_PHOTO_FILE_NAME1", nullable=false, length=512)
+	@Column(name="PRODUCT_PHOTO_FILE_NAME1")
 	private String productPhotoFileName1;
 
 	@Column(name="PRODUCT_PHOTO_FILE_NAME2", nullable=false, length=512)

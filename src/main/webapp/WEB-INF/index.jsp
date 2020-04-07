@@ -1,6 +1,9 @@
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8"
+	import="net.code.TrProductEntity"
+	import="java.util.List"
+%>
 
 <!doctype html>
 <html>
@@ -90,23 +93,31 @@
       <div id="slidewrap">
         <div id="slidemask">
           <ul id="photo">
+			<%
+			//jspでセッションスコープを利用する準備
+			List<TrProductEntity> productList = (List<TrProductEntity>) session.getAttribute("productList");
+			for (int i=0; i<productList.size(); i++) {
+				TrProductEntity entity = productList.get(i);
+			%>
             <li id="slide01">
-              <img src="image/sample-1.jpg" height="350px" width="275px" alt="">
-              <span>【PHOTO-01】</span>
+              <img src="image/<%= entity.getProductPhotoFileName1() %>" height="350px" width="275px" alt="">
+              <span> <%= entity.getProductName() %></span>
             </li>
+
             <li id="slide02">
-              <img src="image/sample-2.jpg" height="350px" width="275px" alt="">
-              <span>【PHOTO-02】</span>
+              <img src="image/<%= entity.getProductPhotoFileName1() %>" height="350px" width="275px" alt="">
+              <span><%= entity.getProductName() %></span>
             </li>
             <li id="slide03">
-              <img src="image/sample-3.jpg" height="350px" width="275px" alt="">
-              <span>【PHOTO-03】</span>
+              <img src="image/<%= entity.getProductPhotoFileName1() %>" height="350px" width="275px" alt="">
+              <span><%= entity.getProductName() %></span>
             </li>
             <li id="slide04">
-              <img src="image/sample-4.jpg" height="350px" width="275px" alt="">
-              <span>【PHOTO-04】</span>
+              <img src="image/<%= entity.getProductPhotoFileName1() %>" height="350px" width="275px" alt="">
+              <span><%= entity.getProductName() %></span>
             </li>
           </ul>
+        <% } %>
         </div>
         <!--/#slidemask-->
         <ul id="thumb">
