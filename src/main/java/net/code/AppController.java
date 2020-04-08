@@ -36,6 +36,6 @@ public class AppController {
 //		取得した全販売商品データをsessionスコープに保存
 		session.setAttribute("productList", productList);
 
-		return "WEB-INF/index.jsp";
+		return "index";
 	}
 }
