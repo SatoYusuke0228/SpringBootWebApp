@@ -120,8 +120,8 @@
               <img src="image/<%= entity.getProductPhotoFileName1() %>" height="350px" width="275px" alt="<%= entity.getProductName() %>">
               <span><%= entity.getProductName() %></span>
             </li>
+            <% } %>
           </ul>
-        <% } %>
         </div>
         <!--/#slidemask-->
         <ul id="thumb">
@@ -154,7 +154,7 @@
 <!-- メイン終了 -->
 <!-- フッター -->
 <footer>
-  <h4>© 2020 SatoYusuke </h4>
+  <h4> © 2020 SatoYusuke </h4>
 </footer>
 <!-- フッターここまで -->
 </body>
