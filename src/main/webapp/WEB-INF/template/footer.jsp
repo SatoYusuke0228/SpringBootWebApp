@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 
-</main>
+
 <!-- メイン終了 -->
 <!-- フッター -->
 <footer>

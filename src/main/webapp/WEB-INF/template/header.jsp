@@ -1,6 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!doctype html>
 <html>
 <head>
@@ -28,8 +27,8 @@
 							type="submit" value="&#xF002">
 					</form>
 				</li>
-				<li><a href="index">Home</a></li>
-				<li><a href="#">Category <span class="caret"></span>
+				<li><a href="/">Home</a></li>
+				<li><a href="">Category <span class="caret"></span>
 				</a>
 					<div>
 						<ul>
@@ -38,11 +37,8 @@
 							<li><a href="product-list.html">その他</a></li>
 						</ul>
 					</div></li>
-				<li><a href="#">Cart</a></li>
+				<li><a href="/cart">Cart</a></li>
 			</ul>
 		</div>
-
 	</header>
 	<!-- ヘッダーここまで -->
-	<!-- メイン -->
-	<main>

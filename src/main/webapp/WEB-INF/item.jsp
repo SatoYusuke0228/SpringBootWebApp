@@ -3,28 +3,30 @@
 
 <%@include file="/WEB-INF/template/header.jsp"%>
 
-<div class="items-page">
-	<div class="items-info">
-		<img src="/image/${selectedItem.productPhotoFileName1}" alt="商品の写真"
-			class="items-image">
-		<div class="items-detail">
-			<table>
-				<tr>
-					<th>商品名</th>
-					<td>${selectedItem.productName}</td>
-				</tr>
-				<tr>
-					<th>価格</th>
-					<td>${selectedItem.productPrice}</td>
-				</tr>
-				<tr class="items-comment">
-					<th>商品説明</th>
-					<td>${selectedItem.productComment}</td>
-				</tr>
-			</table>
-			<button onclick="cart.html">カートに入れる</button>
+<main>
+	<div class="items-page">
+		<div class="items-info">
+			<img src="/image/${selectedItem.productPhotoFileName1}" alt="商品の写真"
+				class="items-image">
+			<div class="items-detail">
+				<table>
+					<tr>
+						<th>商品名</th>
+						<td>${selectedItem.productName}</td>
+					</tr>
+					<tr>
+						<th>価格</th>
+						<td>\ ${selectedItem.productPrice}-</td>
+					</tr>
+					<tr class="items-comment">
+						<th>商品説明</th>
+						<td>${selectedItem.productComment}</td>
+					</tr>
+				</table>
+				<button onclick="cart.html">カートに入れる</button>
+			</div>
 		</div>
 	</div>
-</div>
+</main>
 
 <%@include file="/WEB-INF/template/footer.jsp"%>
