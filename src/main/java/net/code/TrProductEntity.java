@@ -23,7 +23,7 @@ public class TrProductEntity {
 	private String productName;
 
 	@Column(name="PRODUCT_SELLING_PRICE", nullable=false, length=512)
-	private int  productPrice;
+	private int productPrice;
 
 	@Column(name="PRODUCT_CATEGORY_ID", nullable=false, length=512)
 	private String productCategoryId;

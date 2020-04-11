@@ -69,7 +69,7 @@ header {
 /***********************
 * ヘッダー メニューバー *
  ***********************/
- 
+
 .cp_navi {
     color: #888;
     display: block;
@@ -97,7 +97,7 @@ header {
 /***************************
 * ヘッダー ロゴの位置を調整 *
  ***************************/
- 
+
 .logo img{
     margin: 0 auto;
     position: relative;
@@ -109,7 +109,7 @@ header {
 /***********************
 * ヘッダー 検索ボックス *
  ***********************/
- 
+
 .search_container {
     box-sizing: border-box;
     position: relative;
@@ -122,10 +122,10 @@ header {
     left: 50%;
     -webkit-transform : translate(-50%,-50%);
     transform : translate(-50%,-50%);
-    
+
 }
 
-.search_container input[type="text"]{  
+.search_container input[type="text"]{
     border: none;
     position: absolute;
     font-size: 0.75em;
@@ -318,7 +318,7 @@ h1:hover span {
         font-variation-settings: 'wght' 700, 'wdth' 100;
         font-size: 8.5vw;
     }
-    
+
     100% {
         font-variation-settings: 'wght' 100, 'wdth' 85;
         font-size: 7vw;
@@ -346,7 +346,7 @@ h1:hover span {
 
 .area3 {
     height: 86vh;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 #slidewrap {
@@ -362,7 +362,7 @@ h1:hover span {
     list-style: none;
 
 }
- 
+
 #slidemask {
     width: auto;
     height: 60vh;
@@ -373,7 +373,7 @@ h1:hover span {
 }
 
 
- 
+
 /* PhotoSlideArea
 -------------------------- */
 ul#photo {
@@ -426,7 +426,7 @@ ul#thumb li {
     height: 60px;
     float: left;
 }
- 
+
 ul#thumb li img {opacity: 0.5;}
 
 ul#thumb li:hover {opacity: 1;}
@@ -437,13 +437,13 @@ ul#thumb li:hover {opacity: 1;}
     0% {left: 0;}
     20% {left: 0;}
     25% {left: -1000px;}
- 
+
     45% {left: -1000px;}
     50% {left: -1500px;}
- 
+
     70% {left: -1500px;}
     75% {left: -2000px;}
- 
+
     95% {left: -2000px;}
     100% {left: 0;}
 }
@@ -452,8 +452,8 @@ ul#photo {
     -webkit-animation-duration: 20s;
     -webkit-animation-iteration-count:infinite;
 }
- 
- 
+
+
 /* CSS3 ThumbnailSlideAnimation
 -------------------------- */
 @-webkit-keyframes AutoSlideThumb {
@@ -463,7 +463,7 @@ ul#photo {
     21% {opacity: 0.5;-webkit-transform:scale(1);}
     100% {opacity: 0.5;-webkit-transform:scale(1);}
 }
- 
+
 ul#thumb li#thumb01 img,
 ul#thumb li#thumb02 img,
 ul#thumb li#thumb03 img,
@@ -473,7 +473,7 @@ ul#thumb li#thumb04 img {
     -webkit-animation-duration: 20s;
     -webkit-animation-iteration-count: infinite;
 }
- 
+
 ul#thumb li#thumb02 img {-webkit-animation-delay: 5s;}
 ul#thumb li#thumb03 img {-webkit-animation-delay: 10s;}
 ul#thumb li#thumb04 img {-webkit-animation-delay: 15s;}
@@ -546,7 +546,6 @@ main > .items-page > .items-info {
   height: 80vh;
   margin-top: 6vh;
 }
-
 
 main > .items-page > .items-info > .items-image {
   width: auto;

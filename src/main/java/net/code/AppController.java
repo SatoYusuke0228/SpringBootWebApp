@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -31,5 +32,17 @@ public class AppController {
 		model.addAttribute("productList", productList);
 
 		return "index";
+	}
+
+	@RequestMapping("/item/{id}")
+	public String showItemPage(@PathVariable String id, Model model) {
+
+//		指定されたIDの商品を取得
+		TrProductEntity selectedItem = productService.getOne(id);
+
+//		EntityをModelに登録
+		model.addAttribute("selectedItem", selectedItem);
+
+		return"item";
 	}
 }

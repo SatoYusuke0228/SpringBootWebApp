@@ -18,4 +18,8 @@ public class TrProductService {
 	public List<TrProductEntity> findAll() {
 		return productRepository.findAll();
 	}
+
+	public TrProductEntity getOne(String id) {
+		return productRepository.getOne(id);
+	}
 }

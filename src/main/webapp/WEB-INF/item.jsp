@@ -30,8 +30,8 @@
 							type="submit" value="&#xF002">
 					</form>
 				</li>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="#">Category <span class="caret"></span>
+				<li><a href="index">Home</a></li>
+				<li><a href="#"> Category <span class="caret"></span>
 				</a>
 					<div>
 						<ul>
@@ -49,22 +49,21 @@
 	<main>
 		<div class="items-page">
 			<div class="items-info">
-				<img src="image/sample-1.jpg" alt="商品の写真" class="items-image">
+				<img src="image/${selectedItem.productPhotoFileName1}" alt="商品の写真"
+					class="items-image">
 				<div class="items-detail">
 					<table>
 						<tr>
 							<th>商品名</th>
-							<td>テスト商品名</td>
+							<td>${selectedItem.productName}</td>
 						</tr>
 						<tr>
 							<th>価格</th>
-							<td>\1,000- (税込)</td>
+							<td>${selectedItem.productPrice}</td>
 						</tr>
 						<tr class="items-comment">
 							<th>商品説明</th>
-							<td>テストコメントテストコメントテストコメントテストコメント
-								テストコメントテストコメントテストコメントテストコメント テストコメントテストコメントテストコメントテストコメント
-								テストコメントテストコメントテストコメントテストコメント テストコメントテストコメントテストコメントテストコメント</td>
+							<td>${selectedItem.productComment}</td>
 						</tr>
 					</table>
 					<button onclick="cart.html">カートに入れる</button>
@@ -78,6 +77,5 @@
 		<h4>© 2020 SatoYusuke</h4>
 	</footer>
 	<!-- フッターここまで -->
-	<script src="style.js"></script>
 </body>
 </html>
