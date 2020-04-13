@@ -27,17 +27,17 @@
 							type="submit" value="&#xF002">
 					</form>
 				</li>
-				<li><a href="/">Home</a></li>
-				<li><a href="">Category <span class="caret"></span>
+				<li><a href="/"> Home </a></li>
+				<li><a href=""> Category <span class="caret"></span>
 				</a>
 					<div>
 						<ul>
-							<li><a href="product-list.html">コーヒー豆</a></li>
-							<li><a href="product-list.html">抽出器具</a></li>
-							<li><a href="product-list.html">その他</a></li>
+							<li><a href="product-list.html"> コーヒー豆 </a></li>
+							<li><a href="product-list.html"> 抽出器具 </a></li>
+							<li><a href="product-list.html"> その他 </a></li>
 						</ul>
 					</div></li>
-				<li><a href="/cart">Cart</a></li>
+				<li><a href="/cart"> Cart </a></li>
 			</ul>
 		</div>
 	</header>
