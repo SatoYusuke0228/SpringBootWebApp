@@ -32,9 +32,9 @@
 				</a>
 					<div>
 						<ul>
-							<li><a href="product-list.html"> コーヒー豆 </a></li>
-							<li><a href="product-list.html"> 抽出器具 </a></li>
-							<li><a href="product-list.html"> その他 </a></li>
+							<li><a href="/item-list"> コーヒー豆 </a></li>
+							<li><a href="/item-list"> 抽出器具 </a></li>
+							<li><a href="/item-list"> その他 </a></li>
 						</ul>
 					</div></li>
 				<li><a href="/cart"> Cart </a></li>

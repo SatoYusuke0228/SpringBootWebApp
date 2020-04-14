@@ -2,6 +2,8 @@ package net.code;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +21,24 @@ public class AppController {
 	private TrProductService productService;
 
 //	セッションスコープ
-//	@Autowired
-//	HttpSession session;
+	@Autowired
+	HttpSession session;
+
 
 	@RequestMapping("/")
 	public String showTopPage(Model model) {
+
+//		全商品取得
+		List<TrProductEntity> recommendedProductList = productService.findAll();
+
+//		取得した全販売商品データをmodelに保存
+		model.addAttribute("recommendedProductList", recommendedProductList);
+
+		return "index";
+	}
+
+	@RequestMapping("/item-list")
+	public String showItemListPage(Model model) {
 
 //		全商品取得
 		List<TrProductEntity> productList = productService.findAll();
@@ -31,7 +46,7 @@ public class AppController {
 //		取得した全販売商品データをmodelに保存
 		model.addAttribute("productList", productList);
 
-		return "index";
+		return "items";
 	}
 
 	@RequestMapping("/item/{id}")

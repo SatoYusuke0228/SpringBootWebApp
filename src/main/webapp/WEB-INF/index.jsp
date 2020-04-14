@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+	import="net.code.TrProductEntity"
+	import= "java.util.List"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <!-- メイン -->
 <main>
-<c:forEach items="${productList}" var="pl">
 	<div class="container">
 		<section class="area">
 			<div class="area1">
@@ -40,12 +41,14 @@
 		<!-- コンテンツ 3ページ目 -->
 		<section class="area">
 			<div class="area3">
+			<c:forEach items="${recommendedProductList}" var="pl">
+
 				<div id="slidewrap">
 					<div id="slidemask">
 						<ul id="photo">
 							<li id="slide01"><img
 								src="/image/${pl.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${pl.productName}"> <span>
+								width="275px" alt="${pl.productPhotoFileName1}"> <span>
 									${pl.productName} </span></li>
 							<li id="slide02"><img
 								src="/image/${pl.productPhotoFileName1}" height="350px"
@@ -77,10 +80,10 @@
 						</a></li>
 					</ul>
 				</div>
+				</c:forEach>
 			</div>
 		</section>
 	</div>
-</c:forEach>
 </main>
 <!-- メイン終了 -->
 <%@include file="/WEB-INF/template/footer.jsp"%>
