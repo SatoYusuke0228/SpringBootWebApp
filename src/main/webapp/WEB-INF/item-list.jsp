@@ -8,9 +8,9 @@
 		<div class="product-list-container">
 			<section class="product-list-area">
 				<div class="slide-box">
-					<a href="/item/${pl.productId}"> <img
-						src="image/${pl.productPhotoFileName1}">
-						<p>${pl.productName}</p>
+					<a href="/item/${pl.productId}">
+						<img src="/image/${pl.productPhotoFileName1}">
+						<p>{pl.productName}</p>
 					</a>
 				</div>
 			</section>

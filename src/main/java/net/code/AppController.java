@@ -46,7 +46,7 @@ public class AppController {
 //		取得した全販売商品データをmodelに保存
 		model.addAttribute("productList", productList);
 
-		return "items";
+		return "item-list";
 	}
 
 	@RequestMapping("/item/{id}")
