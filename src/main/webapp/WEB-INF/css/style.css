@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 
 /*=================================
 小型PCを基本設計にする
@@ -32,31 +32,6 @@ body {
     max-width: 960px;
     min-width: 1279px;
 }
-
-/********
-* リンク *
- ********/
-
-a:link {
-  color: #d25833;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #d25833;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #e3937a;
-  text-decoration: none;
-}
-
-a:active {
-  color: #ff6a3b;
-  text-decoration: none;
-}
-
 
 /********
 * ヘッダ *
@@ -122,7 +97,6 @@ header {
     left: 50%;
     -webkit-transform : translate(-50%,-50%);
     transform : translate(-50%,-50%);
-
 }
 
 .search_container input[type="text"]{
@@ -138,6 +112,7 @@ header {
     outline: 0;
     font-size: 0.75em;
 }
+
 .search_container input[type="submit"]{
     cursor: pointer;
     font-family: FontAwesome;
@@ -153,8 +128,8 @@ header {
     height: 2.5em;
     right: -9px;
     bottom: -12px;
-
 }
+
 /*******************
 * ヘッダー メニュー *
  *******************/
@@ -231,6 +206,7 @@ header li.search:hover{
 
 footer {
     height: 13.5vh;
+    z-index: 2;
 }
 
 footer h4{
@@ -313,10 +289,13 @@ h1:hover span {
     0% {
         font-variation-settings: 'wght' 100, 'wdth' 85;
         font-size: 7vw;
-    } 60% {
+    }
+    60% {
         font-variation-settings: 'wght' 700, 'wdth' 100;
         font-size: 8.5vw;
-    } 100% {
+    }
+
+    100% {
         font-variation-settings: 'wght' 100, 'wdth' 85;
         font-size: 7vw;
     }
@@ -368,6 +347,8 @@ h1:hover span {
     display: block;
     margin: 0 auto 0 auto;
 }
+
+
 
 /* PhotoSlideArea
 -------------------------- */
@@ -448,6 +429,7 @@ ul#photo {
     -webkit-animation-iteration-count:infinite;
 }
 
+
 /* CSS3 ThumbnailSlideAnimation
 -------------------------- */
 @-webkit-keyframes AutoSlideThumb {
@@ -476,71 +458,80 @@ ul#thumb li#thumb04 img {-webkit-animation-delay: 15s;}
 
 
 
-
-
-
-
-
 /****************
 * 商品一覧ページ *
  ****************/
 
-
 main > .product-list-container {
     margin-right: 0.1em;
-    margin-left: 0.1em; 
+    margin-left: 0.1em;
     /** scroll-snap-type: y mandatory; */
     height: 86vh;
+    overflow: auto;
 }
 
 main > .product-list-container > .product-list-area {
     height: 86vh;
+    width: 100%;
+    max-height: 86vh;
+    max-width: 100vw;
     background-color: #fff;
     margin: 0 0 0 0;
-    max-width: 100vw;
-    width: 100%;
     scroll-snap-align: start;
 }
-
-main > .product-list-container > .product-list-area > .slide-box {
+main > .product-list-container > .product-list-area > ul {
+    margin: 0 0 0 0
     width: 15vw;
     height: 30vh;
-    margin:  5.8vh 4.6vw 5.8vh 4.6vw;
+}
+main > .product-list-container > .product-list-area > ul > li {
+    width: 15vw;
+    height: 30vh;
+    margin: 5.8vh 4.0vw 5.8vh 4.0vw;
     float: left;
     display: inline-block;
     overflow: hidden;
 }
 
-main > .product-list-container > .product-list-area > .slide-box > a {
-    text-decoration: none;
+main > .product-list-container > .product-list-area > ul > li > a {
+    text-decoration: none
+    width: 10vw;
 }
 
-main > .product-list-container > .product-list-area > .slide-box > a:hover {
-    opacity: 1;
-}
-
-
-main >.product-list-container > .product-list-area > .slide-box > a > img {
+main >.product-list-container > .product-list-area >  ul > li > a > img {
 	width: auto;
-	max-width: 23vw;
+	max-width: 10vw;
     max-height: 20vh;
 	display: block;
 	margin: 0 auto 0 auto;
 }
 
-main > .product-list-container > .product-list-area > .slide-box > a > p {
+main > .product-list-container > .product-list-area > ul > li > a > p {
+    width: 10vw;
     font-size: 0.6rem;
     font-weight: bold;
     padding: 10px;
     margin:.5rem auto;
 }
 
-.product-list-container::-webkit-scrollbar{
-    display:none;
+main > .product-list-container >.product-list-area > ul > li:hover {
+     opacity: 0.2;
 }
 
+.product-list-container::-webkit-scrollbar {
+    display: none;
+}
 
-
+@media screen and (max-width: 768px) {
+/* スマホサイズでスライダー表示 */
+  .slide-wrap {
+    overflow-x: scroll;
+  }
+  .slide-box {
+    flex: 0 0 70%;
+    margin: auto 1% auto auto;
+  }
+}
 
 
 /****************
@@ -556,6 +547,7 @@ main > .items-page > .items-info {
   height: 80vh;
   margin-top: 6vh;
 }
+
 
 main > .items-page > .items-info > .items-image {
   width: auto;
@@ -598,13 +590,6 @@ main > .items-page > .items-info > .items-detail > button {
     float: right;
     margin: 2.5vh  0 auto 0;
 }
-
-
-
-
-
-
-
 
 
 
