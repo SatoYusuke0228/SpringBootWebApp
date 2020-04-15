@@ -313,13 +313,10 @@ h1:hover span {
     0% {
         font-variation-settings: 'wght' 100, 'wdth' 85;
         font-size: 7vw;
-    }
-    60% {
+    } 60% {
         font-variation-settings: 'wght' 700, 'wdth' 100;
         font-size: 8.5vw;
-    }
-
-    100% {
+    } 100% {
         font-variation-settings: 'wght' 100, 'wdth' 85;
         font-size: 7vw;
     }
@@ -371,8 +368,6 @@ h1:hover span {
     display: block;
     margin: 0 auto 0 auto;
 }
-
-
 
 /* PhotoSlideArea
 -------------------------- */
@@ -453,7 +448,6 @@ ul#photo {
     -webkit-animation-iteration-count:infinite;
 }
 
-
 /* CSS3 ThumbnailSlideAnimation
 -------------------------- */
 @-webkit-keyframes AutoSlideThumb {
@@ -481,14 +475,20 @@ ul#thumb li#thumb04 img {-webkit-animation-delay: 15s;}
 
 
 
+
+
+
+
+
+
 /****************
 * 商品一覧ページ *
  ****************/
 
+
 main > .product-list-container {
     margin-right: 0.1em;
-    margin-left: 0.1em;
-    overflow: auto;
+    margin-left: 0.1em; 
     /** scroll-snap-type: y mandatory; */
     height: 86vh;
 }
@@ -502,7 +502,7 @@ main > .product-list-container > .product-list-area {
     scroll-snap-align: start;
 }
 
-main >.product-list-container > .product-list-area > .slide-box {
+main > .product-list-container > .product-list-area > .slide-box {
     width: 15vw;
     height: 30vh;
     margin:  5.8vh 4.6vw 5.8vh 4.6vw;
@@ -537,17 +537,6 @@ main > .product-list-container > .product-list-area > .slide-box > a > p {
 
 .product-list-container::-webkit-scrollbar{
     display:none;
-}
-
-@media screen and (max-width: 768px) {
-/* スマホサイズでスライダー表示 */
-  .slide-wrap {
-    overflow-x: scroll;
-  }
-  .slide-box {
-    flex: 0 0 70%;
-    margin: auto 1% auto auto;
-  }
 }
 
 
@@ -609,6 +598,15 @@ main > .items-page > .items-info > .items-detail > button {
     float: right;
     margin: 2.5vh  0 auto 0;
 }
+
+
+
+
+
+
+
+
+
 
 /******************
 * 1280px〜：大型PC *

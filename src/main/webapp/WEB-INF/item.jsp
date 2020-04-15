@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="/WEB-INF/template/header.jsp"%>
-
+<!-- メイン -->
 <main>
 	<div class="items-page">
 		<div class="items-info">
@@ -28,5 +28,5 @@
 		</div>
 	</div>
 </main>
-
+<!-- メイン終了 -->
 <%@include file="/WEB-INF/template/footer.jsp"%>

@@ -8,8 +8,8 @@
 <title>ECサイト・テスト</title>
 <link rel="stylesheet" href="/css/style.css">
 <link
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
+	rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<!-- ヘッダー -->

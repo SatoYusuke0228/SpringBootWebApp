@@ -20,18 +20,17 @@ public class AppController {
 	@Autowired
 	private TrProductService productService;
 
-//	セッションスコープ
+	//	セッションスコープ
 	@Autowired
 	HttpSession session;
-
 
 	@RequestMapping("/")
 	public String showTopPage(Model model) {
 
-//		全商品取得
+		//		全商品取得
 		List<TrProductEntity> recommendedProductList = productService.findAll();
 
-//		取得した全販売商品データをmodelに保存
+		//		取得した全販売商品データをmodelに保存
 		model.addAttribute("recommendedProductList", recommendedProductList);
 
 		return "index";
@@ -40,10 +39,10 @@ public class AppController {
 	@RequestMapping("/item-list")
 	public String showItemListPage(Model model) {
 
-//		全商品取得
+		//		全商品取得
 		List<TrProductEntity> productList = productService.findAll();
 
-//		取得した全販売商品データをmodelに保存
+		//		取得した全販売商品データをmodelに保存
 		model.addAttribute("productList", productList);
 
 		return "item-list";
@@ -52,12 +51,12 @@ public class AppController {
 	@RequestMapping("/item/{id}")
 	public String showItemPage(@PathVariable String id, Model model) {
 
-//		指定されたIDの商品を取得
+		//		指定されたIDの商品を取得
 		TrProductEntity selectedItem = productService.getOne(id);
 
-//		EntityをModelに登録
+		//		EntityをModelに登録
 		model.addAttribute("selectedItem", selectedItem);
 
-		return"item";
+		return "item";
 	}
 }
