@@ -7,66 +7,14 @@
 	<div class="product-list-container">
 		<section class="product-list-area">
 			<ul>
-				<li><a href="URL"> <img src="image/sample-2.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-1.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-4.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-3.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-2.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-1.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-4.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-3.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-2.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-1.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-4.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-3.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-2.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-1.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-4.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-3.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-2.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-1.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-4.jpg">
-						<p>商品1</p>
-				</a></li>
-				<li><a href="URL"> <img src="image/sample-3.jpg">
-						<p>商品1</p>
-				</a></li>
+			<c:forEach items="${productList}" var="pl">
+				<li>
+					<a href="/item/${pl.productId}">
+						<img src="/image/${pl.productPhotoFileName1}">
+						<p> ${pl.productName} </p>
+					</a>
+				</li>
+			</c:forEach>
 			</ul>
 		</section>
 	</div>
