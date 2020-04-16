@@ -9,59 +9,79 @@ import javax.persistence.Table;
 
 /**
  * 商品テーブルのフィールドの宣言及びカプセル化
+ *
+ * CREATE TABLE TR_PRODUCT (
+ * PRODUCT_ID VARCHAR(16) NOT NULL PRIMARY KEY,
+ * PRODUCT_NAME VARCHAR(128) NOT NULL,
+ * PRODUCT_SELLING_PRICE INTEGER NOT NULL,
+ * PRODUCT_CATEGORY_ID CHAR(1) NOT NULL,
+ * PRODUCT_STOCK INTEGER NOT NULL,
+ * PRODUCT_COMMENT VARCHAR(2048),
+ * PRODUCT_PHOTO_FILE_NAME1 VARCHAR(256),
+ * PRODUCT_PHOTO_FILE_NAME2 VARCHAR(256),
+ * PRODUCT_PHOTO_FILE_NAME3 VARCHAR(256),
+ * PRODUCT_SHOW_FLAG INTEGER NOT NULL,
+ * INSERT_DATE TIMESTAMP NOT NULL,
+ * INSERT_USER VARCHAR(64) NOT NULL,
+ * UPDATE_DATE TIMESTAMP NOT NULL,
+ * UPDATE_USER VARCHAR(64) NOT NULL,
+ * DELETE_DATE TIMESTAMP,
+ * DELETE_USER VARCHAR(64)
+ * );
+ *
  * @author SatoYusuke0228
  */
 @Entity
-@Table(name="TR_PRODUCT")
+@Table(name = "TR_PRODUCT")
 public class TrProductEntity {
 
 	@Id
-	@Column(name="PRODUCT_ID", nullable=false, length=512)
+	@Column(name = "PRODUCT_ID", nullable = false, length = 16)
 	private String productId;
 
-	@Column(name="PRODUCT_NAME", nullable=false, length=512)
+	@Column(name = "PRODUCT_NAME", nullable = false, length = 128)
 	private String productName;
 
-	@Column(name="PRODUCT_SELLING_PRICE", nullable=false, length=512)
+	@Column(name = "PRODUCT_SELLING_PRICE", nullable = false)
 	private int productPrice;
 
-	@Column(name="PRODUCT_CATEGORY_ID", nullable=false, length=512)
+	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false, length = 1)
 	private String productCategoryId;
 
-	@Column(name="PRODUCT_STOCK", nullable=false, length=512)
+	@Column(name = "PRODUCT_STOCK", nullable = false)
 	private int productStock;
 
-	@Column(name="PRODUCT_COMMENT", nullable=false, length=512)
+	@Column(name = "PRODUCT_COMMENT", nullable = true, length = 2048)
 	private String productComment;
 
-	@Column(name="PRODUCT_PHOTO_FILE_NAME1")
+	@Column(name = "PRODUCT_PHOTO_FILE_NAME1", nullable = true, length = 256)
 	private String productPhotoFileName1;
 
-	@Column(name="PRODUCT_PHOTO_FILE_NAME2", nullable=false, length=512)
+	@Column(name = "PRODUCT_PHOTO_FILE_NAME2", nullable = true, length = 256)
 	private String productPhotoFileName2;
 
-	@Column(name="PRODUCT_PHOTO_FILE_NAME3", nullable=false, length=512)
+	@Column(name = "PRODUCT_PHOTO_FILE_NAME3", nullable = true, length = 256)
 	private String productPhotoFileName3;
 
-	@Column(name="PRODUCT_SHOW_FLAG", nullable=false, length=512)
+	@Column(name = "PRODUCT_SHOW_FLAG", nullable = false)
 	private String productShowFlag;
 
-	@Column(name="INSERT_DATE", nullable=false, length=512)
+	@Column(name = "INSERT_DATE", nullable = false)
 	private Timestamp insertDate;
 
-	@Column(name="INSERT_USER", nullable=false, length=512)
+	@Column(name = "INSERT_USER", nullable = false, length = 64)
 	private String insertUser;
 
-	@Column(name="UPDATE_DATE", nullable=false, length=512)
+	@Column(name = "UPDATE_DATE", nullable = false)
 	private Timestamp updateDate;
 
-	@Column(name="UPDATE_USER", nullable=false, length=512)
+	@Column(name = "UPDATE_USER", nullable = false, length = 64)
 	private String updateUser;
 
-	@Column(name="DELETE_DATE", nullable=false, length=512)
+	@Column(name = "DELETE_DATE", nullable = true)
 	private Timestamp deleteDate;
 
-	@Column(name="DELETE_USER", nullable=false, length=512)
+	@Column(name = "DELETE_USER", nullable = true, length = 64)
 	private String deleteUser;
 
 	/**
