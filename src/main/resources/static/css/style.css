@@ -97,6 +97,7 @@ header {
     left: 50%;
     -webkit-transform : translate(-50%,-50%);
     transform : translate(-50%,-50%);
+
 }
 
 .search_container input[type="text"]{
@@ -112,7 +113,6 @@ header {
     outline: 0;
     font-size: 0.75em;
 }
-
 .search_container input[type="submit"]{
     cursor: pointer;
     font-family: FontAwesome;
@@ -128,8 +128,8 @@ header {
     height: 2.5em;
     right: -9px;
     bottom: -12px;
-}
 
+}
 /*******************
 * ヘッダー メニュー *
  *******************/
@@ -430,6 +430,8 @@ ul#photo {
 }
 
 
+
+
 /* CSS3 ThumbnailSlideAnimation
 -------------------------- */
 @-webkit-keyframes AutoSlideThumb {
@@ -534,6 +536,8 @@ main > .product-list-container >.product-list-area > ul > li:hover{
 }
 
 
+
+
 /****************
 * 商品詳細ページ *
  ****************/
@@ -591,7 +595,15 @@ main > .items-page > .items-info > .items-detail > button {
     margin: 2.5vh  0 auto 0;
 }
 
+/********
+* カート *
+ ********/
 
+main > .maincol {
+     margin: 8vh 0 0 0;
+     height: 86vh;
+     scroll-snap-align: start;
+}
 
 /******************
 * 1280px〜：大型PC *

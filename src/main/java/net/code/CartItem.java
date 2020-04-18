@@ -21,7 +21,7 @@ package net.code;
  */
 public class CartItem {
 
-	private int id;
+	private String id;
 	private String name;
 	private int quantity;
 	private int price;
@@ -31,22 +31,25 @@ public class CartItem {
 	 */
 	public CartItem() {}
 
-	public CartItem(int id, String name, int quantity, int price) {
+	public CartItem(TrProductEntity item) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.quantity = quantity;
-		this.price = price;
+		this.id = item.getProductId();
+		this.name = item.getProductName();
+		this.quantity = 1;
+		this.price =  item.getProductPrice();
 	}
 
-	/**
-	 * getter and setter
-	 */
-	public int getId() {
+
+	/*********************
+	 * getter and setter *
+	 ********************/
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -61,6 +64,7 @@ public class CartItem {
 	public int getQuantity() {
 		return quantity;
 	}
+
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;

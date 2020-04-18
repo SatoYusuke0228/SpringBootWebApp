@@ -7,7 +7,7 @@ import java.util.Map;
  * カート画面のバックエンド処理をまとめたクラス
  *
  * @param cartItems
- *  取引番号InegerとCartItemクラスのフィールドをマップに所持させる
+ *  CartItemクラスのフィールドをマップに所持させる
  *
  * @param grandTotal
  *  合計購入金額
@@ -16,25 +16,25 @@ import java.util.Map;
  */
 public class Cart {
 
-	private Map<Integer, CartItem> cartItems;
+	private Map<String, CartItem> cartItems;
 	private int grandTotal;
 
 	/**
 	 *コンストラクタ
 	 */
 	public Cart() {
-		cartItems = new HashMap<Integer, CartItem>();
+		cartItems = new HashMap<String, CartItem>();
 		grandTotal = 0;
 	}
 
 	/**
 	 *getter and setter
 	 */
-	public Map<Integer, CartItem> getCartItems() {
+	public Map<String, CartItem> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(Map<Integer, CartItem> cartItems) {
+	public void setCartItems(Map<String, CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
 
@@ -60,7 +60,7 @@ public class Cart {
 	 */
 	public void addCartItem(CartItem item) {
 
-		int id = item.getId();
+		String id = item.getId();
 
 		if (cartItems.containsKey(id)) { //すでに商品がカート内にある場合(containsKey(id) = true)
 			//カート内に既にある商品IDを取得
@@ -68,7 +68,7 @@ public class Cart {
 			//カートに入れられていた商品数＋カートに入れた商品数を合算
 			existingCartItem.setQuantity(existingCartItem.getQuantity() + item.getQuantity());
 			//カートに反映させる
-			cartItems.put(new Integer(id), existingCartItem);
+			cartItems.put(id, existingCartItem);
 			//cartItems.put(id, existingCartItem);
 
 		} else { //まだ商品がカート内にない場合(containsKey(id) = false)
@@ -83,9 +83,9 @@ public class Cart {
 	 * カートの商品削除メソッド
 	 *
 	 * @param id
-	 *  引数 商品ID
+	 *  String
 	 */
-	public void removeCartItem(int id) {
+	public void removeCartItem(String id) {
 
 		//商品IDを指定して削除
 		cartItems.remove(id);

@@ -23,7 +23,7 @@
 						<td>${selectedItem.productComment}</td>
 					</tr>
 				</table>
-				<button onclick="location.href='/cart/add/${selectedItem.sellItemNum}'">カートに入れる</button>
+				<button onclick="location.href='/cart/add/${selectedItem.productId}'">カートに入れる</button>
 			</div>
 		</div>
 	</div>

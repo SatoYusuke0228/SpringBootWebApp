@@ -17,13 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AppController {
 
+	//商品テーブルに関わる処理のインスタンス
 	@Autowired
 	private TrProductService productService;
 
-	//	セッションスコープ
+	//セッションスコープのインスタンス
 	@Autowired
-	HttpSession session;
+	private HttpSession session;
 
+	/**
+	 * TOPページで商品情報を取得するためのメソッド
+	 * @author SatoYusuke0228
+	 */
 	@RequestMapping("/")
 	public String showTopPage(Model model) {
 
@@ -36,6 +41,10 @@ public class AppController {
 		return "index";
 	}
 
+	/**
+	 * 商品一覧ページを表示するためのメソッド
+	 * @author SatoYusuke0228
+	 */
 	@RequestMapping("/item-list")
 	public String showItemListPage(Model model) {
 
@@ -48,6 +57,10 @@ public class AppController {
 		return "item-list";
 	}
 
+	/**
+	 * 商品詳細ページを表示するためのメソッド
+	 * @author SatoYusuke0228
+	 */
 	@RequestMapping("/item/{id}")
 	public String showItemPage(@PathVariable String id, Model model) {
 
@@ -58,5 +71,57 @@ public class AppController {
 		model.addAttribute("selectedItem", selectedItem);
 
 		return "item";
+	}
+
+	/**
+	 * カート画面を表示するメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/cart")
+	public String showCartItem() {
+
+		return "cart";
+	}
+
+	/**
+	 * カートに商品を追加するメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/cart/add/{id}")
+	public String addCartItem(@PathVariable String id) {
+
+		Cart cart = (Cart) session.getAttribute("cart");
+
+		if (cart == null) {
+			// セッションにカートの登録がなければ新規作成
+			cart = new Cart();
+		}
+
+		//カートにアイテムを追加
+		TrProductEntity selectedItem = productService.getOne(id);
+		CartItem cartItem = new CartItem(selectedItem);
+		cart.addCartItem(cartItem);
+
+		//カートをsessionスコープに保存
+		session.setAttribute("cart", cart);
+
+		return "redirect:/cart";
+	}
+
+	/**
+	 * カートに商品を削除するメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/cart/remove/{id}")
+	public String removeCartItem(@PathVariable String id) {
+
+		//カートから商品を削除
+		Cart cart = (Cart) session.getAttribute("cart");
+		cart.removeCartItem(id);
+
+		//カートをsessionスコープに保存
+		session.setAttribute("cart", cart);
+
+		return "redirected:/cart";
 	}
 }
