@@ -122,6 +122,6 @@ public class AppController {
 		//カートをsessionスコープに保存
 		session.setAttribute("cart", cart);
 
-		return "redirected:/cart";
+		return "redirect:/cart";
 	}
 }

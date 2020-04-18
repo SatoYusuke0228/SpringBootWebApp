@@ -600,9 +600,14 @@ main > .items-page > .items-info > .items-detail > button {
  ********/
 
 main > .maincol {
-     margin: 8vh 0 0 0;
+     margin: 8vh auto 8vh auto;
      height: 86vh;
      scroll-snap-align: start;
+     overflow: auto;
+}
+
+.maincol::-webkit-scrollbar{
+    display: none;
 }
 
 /******************
