@@ -42,7 +42,6 @@
 		<section class="area">
 			<div class="area3">
 			<c:forEach items="${recommendedProductList}" var="pl">
-
 				<div id="slidewrap">
 					<div id="slidemask">
 						<ul id="photo">

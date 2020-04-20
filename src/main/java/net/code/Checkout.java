@@ -22,7 +22,7 @@ public class Checkout {
 	private String lastName;
 
 	@NotNull(message="入力してください")
-	@Pattern(regexp="[0-9]{7}", message="7桁の半角数字のみ入力して下さい")
+	@Pattern(regexp="[0-9]{7}", message="7桁の数字のみ入力して下さい")
 	private String zipcode;
 
 	@NotNull(message="入力してください")
@@ -62,11 +62,11 @@ public class Checkout {
     private String creditCardMonth;
 
     @NotNull(message="入力してください")
-    @Pattern(regexp="[0-9][0-9]", message="数字のみ2けた入力してください")
+    @Pattern(regexp="[0-9][0-9]", message="数字のみ2桁入力してください")
     private String creditCardYear;
 
     @NotNull(message="入力してください")
-    @Pattern(regexp="[0-9]{3}", message="数字のみ3けた入力してください")
+    @Pattern(regexp="[0-9]{3}", message="数字のみ3桁入力してください")
     private String creditCardCvs;
 
     /**

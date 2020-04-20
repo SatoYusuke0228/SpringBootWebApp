@@ -86,5 +86,5 @@
 			</c:if>
 		</div>
 	</main>
-<!-- メイン終了 -->
-<%@include file="/WEB-INF/template/footer.jsp"%>
+	<!-- メイン終了 -->
+	<%@include file="/WEB-INF/template/footer.jsp"%>

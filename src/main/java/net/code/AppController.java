@@ -149,7 +149,7 @@ public class AppController {
 	 */
 	@RequestMapping("/showform")
 	public String showForm(Model model) {
-		//支払いのオブジェクトを作成してモデルに登録
+		//購入情報オブジェクトを作成してモデルに登録
 		model.addAttribute("checkout", new Checkout());
 
 		return "checkout";
@@ -167,10 +167,10 @@ public class AppController {
 	 * @parm result
 	 * 引数2
 	 * バリデーションチェックの結果が格納されています。
-	 * hasError()メソッドの戻り値がtrueの場合は、
-	 * バリデーションチェックがエラーだったということで、
+	 * hasErrors()メソッドの戻り値がtrueの場合は、
+	 * バリデーションチェックがエラーということで、
 	 * もういちどcheckout画面へ遷移してエラーメッセージを表示。
-	 * OKの場合はカートを空にして購入完了画面へ遷移。
+	 * OKの場合はカートを空にして購入完了画面purchase.jspへ遷移。
 	 *
 	 * @author SatoYusuke0228
 	 */
@@ -180,11 +180,11 @@ public class AppController {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
-			//元の画面にエラーメッセージを表示
+			// 元の画面にエラーメッセージを表示
 			return "checkout";
 		}
 
-		//カートの中身を初期化
+		// カートの中身を初期化
 		Cart cart = new Cart();
 		session.setAttribute("cart", cart);
 
