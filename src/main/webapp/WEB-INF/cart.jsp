@@ -67,7 +67,8 @@
 							<td>${item.value.getQuantity()}</td>
 							<td>&yen;${item.value.getQuantity() * item.value.getPrice()}-</td>
 							<td>
-								<button onclick="location.href='/cart/remove/item.value.getId()'">削除</button>
+								<button
+									onclick="location.href='/cart/remove/item.value.getId()'">削除</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -80,8 +81,10 @@
 				</tbody>
 			</table>
 			<button onclick="location.href='/'">買い物を続ける</button>
-			<button onclick="location.href='/purchese'">購入画面に進む</button>
+			<c:if test="${cart.grandTotal > 0}">
+				<button onclick="location.href='/showform'">購入画面へ進む</button>
+			</c:if>
 		</div>
 	</main>
-	<!-- メイン終了 -->
-	<%@include file="/WEB-INF/template/footer.jsp"%>
+<!-- メイン終了 -->
+<%@include file="/WEB-INF/template/footer.jsp"%>
