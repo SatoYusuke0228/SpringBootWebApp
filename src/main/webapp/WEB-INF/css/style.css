@@ -15,6 +15,7 @@
 
 
 html {
+	font-family: serif;
     overflow: auto;
 }
 
@@ -594,9 +595,10 @@ main > .items-page > .items-info > .items-detail > button {
     margin: 2.5vh  0 auto 0;
 }
 
-.maincol::-webkit-scrollbar{
+.items-page::-webkit-scrollbar{
     display: none;
 }
+
 
 /********
 * カート *
@@ -609,7 +611,59 @@ main > .maincol {
      overflow: auto;
 }
 
-.items-page::-webkit-scrollbar{
+main > .maincol > table > thead{
+	border-collapse: collapse;
+    border:1px solid #333;
+    text-align: left;
+    vertical-align: top;
+}
+
+main > .maincol > table {
+     
+     margin-left: 50%;
+     transform: translateX(-50%);
+     width: 80vw;
+}
+
+main > .maincol > table,
+main > .maincol > table > thead > tr,
+main > .maincol > table > tbody > tr{
+	border-collapse: collapse;
+    border:1px solid #333;
+}
+
+main > .maincol > table > thead > tr > th{
+	padding: 10px 25px 10px 30px;
+}
+
+main > .maincol > table > tbody > tr > td {
+	padding: 5px;
+	text-align: center;
+}
+
+main > .maincol > table > tbody > tr > td > button {
+	vertical-align: middle;
+	box-shadow: 2px 2px 3px 1px #666;
+    -moz-box-shadow: 2px 2px 3px 1px #666;
+    -webkit-box-shadow: 2px 2px 3px 1px #666;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+main > .maincol > table > tbody > tr > td > button:hover {
+	opacity: 0.2;
+}
+
+.total {
+	height: 20vh;
+}
+
+.button-space {
+	width: 16vw
+}
+
+.maincol::-webkit-scrollbar{
     display: none;
 }
 
