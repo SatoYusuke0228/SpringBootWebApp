@@ -8,10 +8,10 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">商品名</th>
-					<th scope="col">個数</th>
-					<th scope="col">小計</th>
-					<th scope="col"></th>
+					<th class="name-space" scope="col">商品</th>
+					<th class="quantity-space" scope="col">個数</th>
+					<th class="price-space" scope="col">小計</th>
+					<th class="button-space" scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,7 +29,7 @@
 					<td>合計</td>
 					<td></td>
 					<td>&yen;${cart.grandTotal}-</td>
-					<td class="button-space">
+					<td>
 						<button onclick="location.href='/'"><strong>買い物を続ける</strong></button>
 						<c:if test="${cart.grandTotal > 0}">
 							<button onclick="location.href='/showform'"><strong>購入画面へ進む</strong></button>
