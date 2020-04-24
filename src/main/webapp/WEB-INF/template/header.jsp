@@ -6,7 +6,7 @@
 <meta charset='UTF-8'>
 <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
 <title>ECサイト・テスト</title>
-<!-- 
+<!--
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -37,9 +37,9 @@
 				</a>
 					<div>
 						<ul>
-							<li><a href="/item-list"> コーヒー豆 </a></li>
-							<li><a href="/item-list"> 抽出器具 </a></li>
-							<li><a href="/item-list"> その他 </a></li>
+							<li><a href="/item-list/${0}"> コーヒー豆 </a></li>
+							<li><a href="/item-list/${1}"> 抽出器具 </a></li>
+							<li><a href="/item-list/${2}"> その他 </a></li>
 						</ul>
 					</div></li>
 				<li><a href="/cart"> Cart </a></li>

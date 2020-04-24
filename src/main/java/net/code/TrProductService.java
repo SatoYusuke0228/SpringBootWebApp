@@ -15,11 +15,25 @@ public class TrProductService {
 	@Autowired
 	private TrProductRipository productRepository;
 
+	/**
+	 * 商品テーブルの中身を全て取得するメソッド
+	 */
 	public List<TrProductEntity> findAll() {
 		return productRepository.findAll();
 	}
 
+	/**
+	 * 商品テーブルの中身をProductId別で取得するメソッド
+	 */
 	public TrProductEntity getOne(String id) {
 		return productRepository.getOne(id);
+	}
+
+	/**
+	 * 商品テーブルの中身をProductCategoryId別で取得するメソッド
+	 */
+	public List<TrProductEntity> search(int ProductCategoryId) {
+		List<TrProductEntity> resultByCategory = productRepository.findAll();
+		return resultByCategory;
 	}
 }

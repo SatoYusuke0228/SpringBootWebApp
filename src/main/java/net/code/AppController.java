@@ -50,7 +50,7 @@ public class AppController {
 	/**
 	 * 商品一覧ページを表示するためのメソッド
 	 * @author SatoYusuke0228
-	 */
+	 *
 	@RequestMapping("/item-list")
 	public String showItemListPage(Model model) {
 
@@ -58,6 +58,23 @@ public class AppController {
 		List<TrProductEntity> productList = productService.findAll();
 
 		//		取得した全販売商品データをmodelに保存
+		model.addAttribute("productList", productList);
+
+		return "item-list";
+	}
+	*/
+
+	/**
+	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/item-list/{ProuctCategryId}")
+	public String showItemListPageByCategory(@PathVariable int ProuctCategryId ,Model model) {
+
+		//全商品取得
+		List<TrProductEntity> productList = productService.search(ProuctCategryId);
+
+		//取得した全販売商品データをmodelに保存
 		model.addAttribute("productList", productList);
 
 		return "item-list";
