@@ -23,17 +23,27 @@ public class TrProductService {
 	}
 
 	/**
+	 * 商品テーブルの中身をproductCategoryId別に取得するメソッド
+	 */
+	public List<TrProductEntity> findAll(String productCategoryId) {
+
+		//商品カテゴリID==0のListを作成
+		if ("0".equals(productCategoryId)) {
+
+		//商品カテゴリID==1のListを作成
+		} else if ("1".equals(productCategoryId)) {
+
+		//商品カテゴリID==2のListを作成
+		} else if ("2".equals(productCategoryId)) {
+
+		}
+		return productRepository.findAll();
+	}
+
+	/**
 	 * 商品テーブルの中身をProductId別で取得するメソッド
 	 */
 	public TrProductEntity getOne(String id) {
 		return productRepository.getOne(id);
-	}
-
-	/**
-	 * 商品テーブルの中身をProductCategoryId別で取得するメソッド
-	 */
-	public List<TrProductEntity> search(int ProductCategoryId) {
-		List<TrProductEntity> resultByCategory = productRepository.findAll();
-		return resultByCategory;
 	}
 }

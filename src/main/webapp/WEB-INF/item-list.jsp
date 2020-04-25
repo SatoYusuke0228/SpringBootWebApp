@@ -7,7 +7,7 @@
 	<div class="product-list-container">
 		<section class="product-list-area">
 			<ul>
-			<c:forEach items="${productList}" var="pl">
+			<c:forEach items="${productList}" var="pl"  >
 				<li>
 					<a href="/item/${pl.productId}">
 						<img src="/image/${pl.productPhotoFileName1}">

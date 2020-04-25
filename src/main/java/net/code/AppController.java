@@ -48,35 +48,30 @@ public class AppController {
 	}
 
 	/**
-	 * 商品一覧ページを表示するためのメソッド
-	 * @author SatoYusuke0228
-	 *
-	@RequestMapping("/item-list")
-	public String showItemListPage(Model model) {
-
-		//全商品取得
-		List<TrProductEntity> productList = productService.findAll();
-
-		//		取得した全販売商品データをmodelに保存
-		model.addAttribute("productList", productList);
-
-		return "item-list";
-	}
-	*/
-
-	/**
 	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
 	 * @author SatoYusuke0228
-	 */
-	@RequestMapping("/item-list/{ProuctCategryId}")
-	public String showItemListPageByCategory(@PathVariable int ProuctCategryId ,Model model) {
+	*/
+	@RequestMapping("/item-list/{category}")
+	public String showItemListPageByCategory(@PathVariable String category, Model model) {
 
-		//全商品取得
-		List<TrProductEntity> productList = productService.search(ProuctCategryId);
+		//商品カテゴリー「コーヒー豆」の商品一覧を作成してモデルに保存
+		if ("beans".equals(category)) {
 
-		//取得した全販売商品データをmodelに保存
-		model.addAttribute("productList", productList);
+			List<TrProductEntity> productList = productService.findAll("0");
+			model.addAttribute("productList", productList);
 
+		//商品カテゴリー「抽出器具」の商品一覧を作成してモデルに保存
+		} else if ("extractor".equals(category)) {
+
+			List<TrProductEntity> productList = productService.findAll("1");
+			model.addAttribute("productList", productList);
+
+		//商品カテゴリー「その他」の商品一覧を作成してモデルに保存
+		} else if ("other".equals(category)) {
+
+			List<TrProductEntity> productList = productService.findAll("2");
+			model.addAttribute("productList", productList);
+		}
 		return "item-list";
 	}
 
