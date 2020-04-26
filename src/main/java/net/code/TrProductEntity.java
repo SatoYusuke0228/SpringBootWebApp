@@ -4,7 +4,10 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -46,6 +49,7 @@ public class TrProductEntity {
 	private int productPrice;
 
 	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false, length = 1)
+
 	private String productCategoryId;
 
 	@Column(name = "PRODUCT_STOCK", nullable = false)
@@ -83,6 +87,10 @@ public class TrProductEntity {
 
 	@Column(name = "DELETE_USER", nullable = true, length = 64)
 	private String deleteUser;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productCategoryFK", referencedColumnName = "productCategoryId")
+    private MsProductCategoryInventoryEntity fk;
 
 	/**
 	 * setter and getter

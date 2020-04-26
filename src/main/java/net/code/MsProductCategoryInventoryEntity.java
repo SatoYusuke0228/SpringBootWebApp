@@ -1,10 +1,12 @@
 package net.code;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,9 +25,9 @@ import javax.persistence.Table;
  * );
  *
  *
- * PRODUCT_CATEGORY_ID == 0 == 'beans'
- * PRODUCT_CATEGORY_ID == 1 == 'extractor'
- * PRODUCT_CATEGORY_ID == 2 == 'other'
+ * PRODUCT_CATEGORY_ID == '0' == 'beans'
+ * PRODUCT_CATEGORY_ID == '1' == 'extractor'
+ * PRODUCT_CATEGORY_ID == '2' == 'other'
  *
  *
  * @author SatoYusuke0228
@@ -59,6 +61,9 @@ public class MsProductCategoryInventoryEntity {
 
 	@Column(name = "DELETE_USER", nullable = true, length = 64)
 	private String deleteUser;
+
+	@OneToMany(mappedBy = "fk")
+	private List<TrProductEntity> productList;
 
 	/**
 	 * getter and setter
