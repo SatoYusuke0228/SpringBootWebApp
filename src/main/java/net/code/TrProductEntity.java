@@ -4,14 +4,12 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * 商品テーブルのフィールドの宣言及びカプセル化
+ *
  *
  * CREATE TABLE TR_PRODUCT (
  * PRODUCT_ID VARCHAR(16) NOT NULL PRIMARY KEY,
@@ -32,6 +30,7 @@ import javax.persistence.Table;
  * DELETE_USER VARCHAR(64)
  * );
  *
+ *
  * @author SatoYusuke0228
  */
 @Entity
@@ -49,7 +48,6 @@ public class TrProductEntity {
 	private int productPrice;
 
 	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false, length = 1)
-
 	private String productCategoryId;
 
 	@Column(name = "PRODUCT_STOCK", nullable = false)
@@ -88,9 +86,9 @@ public class TrProductEntity {
 	@Column(name = "DELETE_USER", nullable = true, length = 64)
 	private String deleteUser;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productCategoryFK", referencedColumnName = "productCategoryId")
-    private MsProductCategoryInventoryEntity fk;
+	//	@ManyToOne(fetch = FetchType.LAZY)
+	//	@JoinColumn(name = "productCategoryFK", referencedColumnName = "PRODUCT_CATEGORY_ID")
+	//	private MsProductCategoryInventoryEntity fk;
 
 	/**
 	 * setter and getter

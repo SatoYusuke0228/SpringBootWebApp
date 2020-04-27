@@ -27,6 +27,9 @@ public class AppController {
 	@Autowired
 	private TrProductService productService;
 
+	@Autowired
+	private MsProductCategoryInventoryService productCategoryInventoryService;
+
 	//セッションスコープのインスタンス
 	@Autowired
 	private HttpSession session;
@@ -50,28 +53,13 @@ public class AppController {
 	/**
 	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
 	 * @author SatoYusuke0228
-	*/
+	 */
 	@RequestMapping("/item-list/{category}")
 	public String showItemListPageByCategory(@PathVariable String category, Model model) {
 
-		//商品カテゴリー「コーヒー豆」の商品一覧を作成してモデルに保存
-		if ("beans".equals(category)) {
+		List<MsProductCategoryInventoryEntity> categoryList = productCategoryInventoryService.findAll();
+		model.addAttribute("categoryList", categoryList);
 
-			List<TrProductEntity> productList = productService.findAll("0");
-			model.addAttribute("productList", productList);
-
-		//商品カテゴリー「抽出器具」の商品一覧を作成してモデルに保存
-		} else if ("extractor".equals(category)) {
-
-			List<TrProductEntity> productList = productService.findAll("1");
-			model.addAttribute("productList", productList);
-
-		//商品カテゴリー「その他」の商品一覧を作成してモデルに保存
-		} else if ("other".equals(category)) {
-
-			List<TrProductEntity> productList = productService.findAll("2");
-			model.addAttribute("productList", productList);
-		}
 		return "item-list";
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -62,8 +63,9 @@ public class MsProductCategoryInventoryEntity {
 	@Column(name = "DELETE_USER", nullable = true, length = 64)
 	private String deleteUser;
 
-	@OneToMany(mappedBy = "fk")
-	private List<TrProductEntity> productList;
+	@OneToMany //(mappedBy = "fk")
+	@JoinColumn(name="PRODUCT_CATEGORY_ID")
+	private List<TrProductEntity> trProductEntity;
 
 	/**
 	 * getter and setter
