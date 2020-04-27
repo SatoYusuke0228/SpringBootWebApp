@@ -33,7 +33,6 @@ import lombok.Setter;
  * DELETE_USER VARCHAR(64)
  * );
  *
- *
  * @author SatoYusuke0228
  */
 @Entity
