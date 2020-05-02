@@ -1,6 +1,7 @@
 package net.code;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -28,7 +29,7 @@ public class AppController {
 	private TrProductService productService;
 
 	@Autowired
-	private MsProductCategoryInventoryService productCategoryInventoryService;
+	private MsProductCategoryInventoryService categoryService;
 
 	//セッションスコープのインスタンス
 	@Autowired
@@ -55,9 +56,17 @@ public class AppController {
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/item-list/{category}")
-	public String showItemListPageByCategory(@PathVariable String category, Model model) {
+	public String showItemListPageByCategory(@PathVariable int category, Model model) {
 
-		List<MsProductCategoryInventoryEntity> categoryList = productCategoryInventoryService.findAll();
+		Optional<MsProductCategoryInventoryEntity> categoryList = categoryService.findById(category);
+
+		System.out.println(categoryList.get().getTrProductEntity().get(0).getProductId());
+
+//		Listの中のListの要素を取得しようとしてみる
+//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductId());
+//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductName());
+//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductPhotoFileName1());
+
 		model.addAttribute("categoryList", categoryList);
 
 		return "item-list";

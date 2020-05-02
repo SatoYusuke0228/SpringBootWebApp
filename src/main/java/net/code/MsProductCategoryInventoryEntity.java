@@ -16,9 +16,10 @@ import lombok.Setter;
 /**
  * 商品カテゴリーテーブルのフィールドの宣言及びカプセル化
  *
+ * ◇商品カテゴリーテーブルの作成SQL文
  *
  * CREATE TABLE MS_PRODUCT_CATEGORY_INVENTORY (
- * PRODUCT_CATEGORY_ID CHAR(1) NOT NULL PRIMARY KEY,
+ * PRODUCT_CATEGORY_ID INTEGER NOT NULL PRIMARY KEY,
  * PRODUCT_CATEGORY_NAME VARCHAR(64) NOT NULL,
  * INSERT_DATE TIMESTAMP DEFAULT now() NOT NULL,
  * INSERT_USER VARCHAR(64) NOT NULL,
@@ -28,11 +29,25 @@ import lombok.Setter;
  * DELETE_USER VARCHAR(64)
  * );
  *
+ * ◇セクションの作成とオートインクリメントの設定
  *
- * PRODUCT_CATEGORY_ID == '0' == 'beans'
- * PRODUCT_CATEGORY_ID == '1' == 'extractor'
- * PRODUCT_CATEGORY_ID == '2' == 'other'
+ * CREATE SEQUENCE MS_PRODUCT_CATEGORY_INVENTORY_ID_SEQ
+ * ;
  *
+ * ALTER TABLE MS_PRODUCT_CATEGORY_INVENTORY
+ * ALTER COLUMN PRODUCT_CATEGORY_ID
+ * SET DEFAULT nextval('MS_PRODUCT_CATEGORY_INVENTORY_ID_SEQ')
+ * ;
+ *
+ * ALTER SEQUENCE MS_PRODUCT_CATEGORY_INVENTORY_ID_SEQ
+ * INCREMENT 1 MINVALUE 0 MAXVALUE 2147483647 RESTART 0
+ * ;
+ *
+  ********************************************************************
+ *   PRODUCT_CATEGORY_ID is 0 == PRODUCT_CATEGORY_NAME is 'コーヒー豆'     *
+ *   PRODUCT_CATEGORY_ID is 1 == PRODUCT_CATEGORY_NAME is '抽出器具' *
+ *   PRODUCT_CATEGORY_ID is 2 == PRODUCT_CATEGORY_NAME is 'その他'     *
+  ********************************************************************
  *
  * @author SatoYusuke0228
  */
@@ -42,10 +57,10 @@ import lombok.Setter;
 public class MsProductCategoryInventoryEntity {
 
 	@Id
-	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false, length = 1)
+	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false)
 	@Getter
 	@Setter
-	private String productCategoryId;
+	private int productCategoryId;
 
 	@Column(name = "PRODUCT_CATEGORY_NAME", nullable = false, length = 64)
 	@Getter
@@ -82,7 +97,17 @@ public class MsProductCategoryInventoryEntity {
 	@Setter
 	private String deleteUser;
 
-	@OneToMany //(mappedBy = "fk")
+	/**
+	 * @OneToMany(
+	 * 		cascade = 元が消えたら関連テーブルはどうするか,
+	 * 		fetch = 一緒に取り出すか
+	 * 		mappedBy = 関連ドメインクラス
+	 * )
+	 */
+	@OneToMany
 	@JoinColumn(name="PRODUCT_CATEGORY_ID")
+	@Getter
+	@Setter
 	private List<TrProductEntity> trProductEntity;
+
 }

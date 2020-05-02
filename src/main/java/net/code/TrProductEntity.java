@@ -13,12 +13,13 @@ import lombok.Setter;
 /**
  * 商品テーブルのフィールドの宣言及びカプセル化
  *
+ * ◇商品テーブルの作成SQL文
  *
  * CREATE TABLE TR_PRODUCT (
  * PRODUCT_ID VARCHAR(16) NOT NULL PRIMARY KEY,
  * PRODUCT_NAME VARCHAR(128) NOT NULL,
  * PRODUCT_SELLING_PRICE INTEGER NOT NULL,
- * PRODUCT_CATEGORY_ID CHAR(1) NOT NULL,
+ * PRODUCT_CATEGORY_ID INTEGER NOT NULL,
  * PRODUCT_STOCK INTEGER NOT NULL,
  * PRODUCT_COMMENT VARCHAR(2048),
  * PRODUCT_PHOTO_FILE_NAME1 VARCHAR(256),
@@ -32,6 +33,16 @@ import lombok.Setter;
  * DELETE_DATE TIMESTAMP,
  * DELETE_USER VARCHAR(64)
  * );
+ *
+ *
+ * ◇外部キー(FK)の設定
+ *
+ * ALTER TABLE TR_PRODUCT
+ * ADD FOREIGN KEY (PRODUCT_CATEGORY_ID)
+ * REFERENCES MS_PRODUCT_CATEGORY_INVENTORY (PRODUCT_CATEGORY_ID)
+ * ON UPDATE RESTRICT
+ * ON DELETE RESTRICT
+ * ;
  *
  * @author SatoYusuke0228
  */
@@ -55,10 +66,10 @@ public class TrProductEntity {
 	@Setter
 	private int productPrice;
 
-	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false, length = 1)
+	@Column(name = "PRODUCT_CATEGORY_ID", nullable = false)
 	@Getter
 	@Setter
-	private String productCategoryId;
+	private int productCategoryId;
 
 	@Column(name = "PRODUCT_STOCK", nullable = false)
 	@Getter
@@ -119,8 +130,4 @@ public class TrProductEntity {
 	@Getter
 	@Setter
 	private String deleteUser;
-
-	//	@ManyToOne(fetch = FetchType.LAZY)
-	//	@JoinColumn(name = "productCategoryFK", referencedColumnName = "PRODUCT_CATEGORY_ID")
-	//	private MsProductCategoryInventoryEntity fk;
 }
