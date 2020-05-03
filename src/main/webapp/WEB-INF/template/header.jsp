@@ -37,9 +37,9 @@
 				</a>
 					<div>
 						<ul>
-							<li><a href="/item-list/1"> コーヒー豆 </a></li>
-							<li><a href="/item-list/2"> 抽出器具 </a></li>
-							<li><a href="/item-list/3"> その他 </a></li>
+							<li><a href="/item-list/0"> コーヒー豆 </a></li>
+							<li><a href="/item-list/1"> 抽出器具 </a></li>
+							<li><a href="/item-list/2"> その他 </a></li>
 						</ul>
 					</div></li>
 				<li><a href="/cart"> Cart </a></li>
