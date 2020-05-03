@@ -13,9 +13,9 @@
 			<%Optional<MsProductCategoryInventoryEntity> categoryList = (Optional<MsProductCategoryInventoryEntity>)request.getAttribute("categoryList");%>
 			<%for(int i=0; i < categoryList.get().getTrProductEntity().size(); i++){ %>
 				<li>
-					<a href="/item/<%categoryList.get().getTrProductEntity().get(i).getProductId();%>">
-						<img src="/image/<% categoryList.get().getTrProductEntity().get(i).getProductPhotoFileName1();%>">
-						<p><% categoryList.get().getTrProductEntity().get(i).getProductName();%></p>
+					<a href="/item/<%= categoryList.get().getTrProductEntity().get(i).getProductId();%>">
+						<img src="/image/<%= categoryList.get().getTrProductEntity().get(i).getProductPhotoFileName1();%>">
+						<p><%= categoryList.get().getTrProductEntity().get(i).getProductName();%></p>
 					</a>
 				</li>
 			<% } %>
