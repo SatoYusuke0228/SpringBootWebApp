@@ -77,13 +77,13 @@ public class AppController {
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/item/{id}")
-	public String showItemPage(@PathVariable String id, Model model) {
+	public String showItemPage(@PathVariable String id, HttpSession session) {
 
 		//指定されたIDの商品を取得
 		TrProductEntity selectedItem = productService.getOne(id);
 
 		//EntityをModelに登録
-		model.addAttribute("selectedItem", selectedItem);
+		session.setAttribute("selectedItem", selectedItem);
 
 		return "item";
 	}
