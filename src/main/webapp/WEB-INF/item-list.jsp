@@ -10,8 +10,8 @@
 		<section class="product-list-area">
 			<ul>
 			<!-- <c:forEach items="categoryList" begin="0" end="2" step="1"> -->
-			<%Optional<MsProductCategoryInventoryEntity> categoryList = (Optional<MsProductCategoryInventoryEntity>)request.getAttribute("categoryList");%>
-			<%for(int i=0; i < categoryList.get().getTrProductEntity().size(); i++){ %>
+			<%Optional<MsProductCategoryInventoryEntity> categoryList = (Optional<MsProductCategoryInventoryEntity>) request.getAttribute("categoryList");%>
+			<%for(int i=0; i < categoryList.get().getTrProductEntity().size(); i++) { %>
 				<li>
 					<a href="/item/<%=categoryList.get().getTrProductEntity().get(i).getProductId()%>">
 						<img src="/image/<%=categoryList.get().getTrProductEntity().get(i).getProductPhotoFileName1()%>">

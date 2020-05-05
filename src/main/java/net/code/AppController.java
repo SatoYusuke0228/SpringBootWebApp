@@ -61,12 +61,6 @@ public class AppController {
 		Optional<MsProductCategoryInventoryEntity> categoryList = categoryService.findById(category);
 
 		System.out.println(categoryList.get().getTrProductEntity().get(0).getProductId());
-
-//		Listの中のListの要素を取得しようとしてみる
-//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductId());
-//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductName());
-//		System.out.println(categoryList.get(1).getTrProductEntity().get(0).getProductPhotoFileName1());
-
 		model.addAttribute("categoryList", categoryList);
 
 		return "item-list";

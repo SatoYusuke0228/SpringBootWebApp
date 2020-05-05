@@ -19,6 +19,9 @@ public class MsProductCategoryInventoryService {
 		return categoryRepository.findAll();
 	}
 
+	/**
+	 * カテゴリーテーブルの中身をカテゴリーIDごとに取得するメソッド
+	 */
 	public Optional<MsProductCategoryInventoryEntity> findById(int category){
 		return categoryRepository.findById(category);
 	}

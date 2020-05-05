@@ -21,7 +21,7 @@
 						<td>${item.value.getQuantity()}</td>
 						<td>&yen;${item.value.getQuantity() * item.value.getPrice()}-</td>
 						<td>
-							<button onclick="location.href='/cart/remove/item.value.getId()'">削除</button>
+							<button onclick="location.href='/cart/remove/${item.value.getId()}'">削除</button>
 						</td>
 					</tr>
 				</c:forEach>
