@@ -1,8 +1,17 @@
 package net.code;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,5 +36,62 @@ public class TrProductService {
 	 */
 	public TrProductEntity getOne(String id) {
 		return productRepository.getOne(id);
+	}
+
+	/**
+	 * 商品検索をAND検索する為のヘルパー関数①
+	 * 単一キーワードによる絞り込み条件を表すSpecificationを返す
+	 * @param 入力キーワード
+	 * @return 絞り込み条件
+	 */
+	private Specification<TrProductEntity> nameContains(String name) {
+		return new Specification<TrProductEntity>() {
+			@Override
+			public Predicate toPredicate(Root<TrProductEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				return cb.like(root.get(TrProductEntity_.productName), "%" + name + "%");
+			}
+		};
+	}
+
+	/*
+	 * 商品検索をAND検索する為のヘルパー関数②
+	 * "word1 word2 word3"のようなクエリ文をばらして
+	 * ["word1", "word2", "word3"]にするのに使用するヘルパー関数
+	 */
+	private List<String> splitQuery(String query) {
+		final String space = " ";
+		// 半角スペースと全角スペースの組み合わせのパターンを表す
+		final String spacesPattern = "[\\s　]+";
+		// 以上のパターンにマッチした部分を単一の半角スペースに変換する
+		final String monoSpaceQuery = query.replaceAll(spacesPattern, space);
+		// splitするとき、余分な空要素が生成されるのを防ぐため、先頭と末尾のスペースを削除する
+		final String trimmedMonoSpaceQuery = monoSpaceQuery.trim();
+		// 半角スペースでクエリをsplitする
+		return Arrays.asList(trimmedMonoSpaceQuery.split("\\s"));
+	}
+
+	/*
+	 * 商品検索をAND検索する為の関数
+	 * @param
+	 * nameQuery 引数①
+	 * 商品テーブルの商品名
+	 *
+	 * pageable 引数②
+	 * Pageable型の変数
+	 *
+	 */
+	public Page<TrProductEntity> findAll(String nameQuery, Pageable pageable) {
+		// クエリを複数キーワードに分割する
+		final List<String> keywords = splitQuery(nameQuery);
+		// 何もしないSpecificationを生成する。reduceの初期値として利用する
+		// Specification.where()にnullを渡せば、何もしないSpecificationが生成される
+		final Specification<TrProductEntity> zero = Specification.where((Specification<TrProductEntity>) null);
+		// キーワードのリストをそれぞれSpecificationにマッピングして、andで結合する
+		final Specification<TrProductEntity> spec = keywords
+				.stream()
+				.map(this::nameContains)
+				.reduce(zero, Specification<TrProductEntity>::and);
+
+		return productRepository.findAll(spec, pageable);
 	}
 }

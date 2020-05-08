@@ -56,29 +56,36 @@ public class AppController {
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/item-list/{category}")
-	public String showItemListPageByCategory(@PathVariable int category, Model model) {
+	public String showItemListPageByCategory(@PathVariable int category) {
 
 		Optional<MsProductCategoryInventoryEntity> categoryList = categoryService.findById(category);
-
-		System.out.println(categoryList.get().getTrProductEntity().get(0).getProductId());
-		model.addAttribute("categoryList", categoryList);
+		session.setAttribute("categoryList", categoryList);
 
 		return "item-list";
 	}
+
+	/**
+	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
+	 * @author SatoYusuke0228
+	 */
+	 @RequestMapping("/item-list2/{nameQuery}")
+	 public String showItemListPageByKeyword(@PathVariable String nameQuery, Model model) {
+		//List<TrProductEntity> entity= productService.findAll(nameQuery, Pageable pageable);
+		return  "item-list2";
+	 }
 
 	/**
 	 * 商品詳細ページを表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/item/{id}")
-	public String showItemPage(@PathVariable String id, HttpSession session) {
+	public String showItemPage(@PathVariable String id, Model model) {
 
 		//指定されたIDの商品を取得
 		TrProductEntity selectedItem = productService.getOne(id);
 
 		//EntityをModelに登録
-		session.setAttribute("selectedItem", selectedItem);
-
+		model.addAttribute("selectedItem", selectedItem);
 		return "item";
 	}
 
