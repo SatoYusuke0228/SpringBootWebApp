@@ -9,11 +9,11 @@
 	<div class="product-list-container">
 		<section class="product-list-area">
 			<ul>
-			<c:forEach items="entity" var="entity">
+			<c:forEach items="itemsByKeyword" var="items">
 				<li>
-					<a href="/item/${entity.get().getProductId()}">
-						<img src="/image/${entity.get().getProductPhotoFileName1()}">
-						<p>${entity.get().getProductName()}</p>
+					<a href="/item/${items.productId}">
+						<img src="/image/${items.productPhotoFileName1}">
+						<p>${items.productName}</p>
 					</a>
 				</li>
 			</c:forEach>

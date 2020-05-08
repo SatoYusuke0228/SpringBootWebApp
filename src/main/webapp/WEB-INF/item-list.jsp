@@ -9,18 +9,16 @@
 	<div class="product-list-container">
 		<section class="product-list-area">
 			<ul>
-			<!-- <c:forEach items="categoryList" begin="0" end="2" step="1">-->
-			<%Optional<MsProductCategoryInventoryEntity> categoryList = (Optional<MsProductCategoryInventoryEntity>) session.getAttribute("categoryList");%>
-			<%for(int i=0; i < categoryList.get().getTrProductEntity().size(); i++) { %>
-				<%TrProductEntity productEntityInCategoryList = categoryList.get().getTrProductEntity().get(i);%>
+			<%Optional<MsProductCategoryInventoryEntity> itemsByCategory = (Optional<MsProductCategoryInventoryEntity>) session.getAttribute("itemsByCategory");%>
+			<%for(int i=0; i <itemsByCategory.get().getTrProductEntity().size(); i++) { %>
+				<%TrProductEntity items = itemsByCategory.get().getTrProductEntity().get(i);%>
 				<li>
-					<a href="/item/<%=productEntityInCategoryList.getProductId()%>">
-						<img src="/image/<%=productEntityInCategoryList.getProductPhotoFileName1()%>">
-						<p><%=productEntityInCategoryList.getProductName()%></p>
+					<a href="/item/<%=items.getProductId()%>">
+						<img src="/image/<%=items.getProductPhotoFileName1()%>">
+						<p><%=items.getProductName()%></p>
 					</a>
 				</li>
 			<% } %>
-			<!-- </c:forEach> -->
 			</ul>
 		</section>
 	</div>

@@ -41,26 +41,26 @@
 		<!-- コンテンツ 3ページ目 -->
 		<section class="area">
 			<div class="area3">
-			<c:forEach items="${recommendedProductList}" var="pl">
+			<c:forEach items="${recommendedItems}" var="items">
 				<div id="slidewrap">
 					<div id="slidemask">
 						<ul id="photo">
 							<li id="slide01"><img
-								src="/image/${pl.productPhotoFileName1}" height="350px"
-								width="275px" alt="${pl.productPhotoFileName1}"> <span>
-									${pl.productName} </span></li>
+								src="/image/${items.productPhotoFileName1}" height="350px"
+								width="275px" alt="${items.productPhotoFileName1}"> <span>
+									${items.productName} </span></li>
 							<li id="slide02"><img
-								src="/image/${pl.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${pl.productName}"> <span>
-									${pl.productName} </span></li>
+								src="/image/${items.productPhotoFileName1}" height="350px"
+								width="275px" alt=" ${items.productName}"> <span>
+									${items.productName} </span></li>
 							<li id="slide03"><img
-								src="/image/${pl.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${pl.productName}"> <span>
-									${pl.productName} </span></li>
+								src="/image/${items.productPhotoFileName1}" height="350px"
+								width="275px" alt=" ${items.productName}"> <span>
+									${items.productName} </span></li>
 							<li id="slide04"><img
-								src="/image/${pl.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${pl.productName}"> <span>
-									${pl.productName} </span></li>
+								src="/image/${items.productPhotoFileName1}" height="350px"
+								width="275px" alt=" ${items.productName}"> <span>
+									${items.productName} </span></li>
 						</ul>
 					</div>
 					<!--/#slidemask-->
