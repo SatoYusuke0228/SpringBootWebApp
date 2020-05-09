@@ -9,7 +9,7 @@
 	<div class="product-list-container">
 		<section class="product-list-area">
 			<ul>
-			<c:forEach items="itemsByKeyword" var="items">
+			<c:forEach items="${itemsByKeyword}" var="items">
 				<li>
 					<a href="/item/${items.productId}">
 						<img src="/image/${items.productPhotoFileName1}">

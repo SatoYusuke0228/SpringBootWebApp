@@ -65,17 +65,17 @@
 					</div>
 					<!--/#slidemask-->
 					<ul id="thumb">
-						<li id="thumb01"><a href="item/${pl.productId}"> <img
-								src="/image/${pl.productPhotoFileName1}" alt="${pl.productName}">
+						<li id="thumb01"><a href="item/${items.productId}"> <img
+								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
-						<li id="thumb02"><a href="item/${pl.productId}"> <img
-								src="/image/${pl.productPhotoFileName1}" alt="${pl.productName}">
+						<li id="thumb02"><a href="item/${items.productId}"> <img
+								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
-						<li id="thumb03"><a href="item/${pl.productId}"> <img
-								src="/image/${pl.productPhotoFileName1}" alt="${pl.productName}">
+						<li id="thumb03"><a href="item/${items.productId}"> <img
+								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
-						<li id="thumb04"><a href="item/${pl.productId}"> <img
-								src="/image/${pl.productPhotoFileName1}" alt="${pl.productName}">
+						<li id="thumb04"><a href="item/${items.productId}"> <img
+								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
 					</ul>
 				</div>

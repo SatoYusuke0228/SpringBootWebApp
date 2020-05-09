@@ -62,10 +62,10 @@ public class ShowItemsController {
 	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	 @RequestMapping("/item-list2/{nameQuery}")
+	 @RequestMapping("/item-list2/search{nameQuery}")
 	 public String showItemsByKeyword(@PathVariable String nameQuery, Model model) {
-		//List<TrProductEntity> itemsByKeyword = productService.findAll(nameQuery, Pageable pageable);
-		//model.addAllAttribute("itemsByKeyword", itemsByKeyword);
+		List<TrProductEntity> itemsByKeyword = productService.findAll(nameQuery);
+		model.addAttribute("itemsByKeyword", itemsByKeyword);
 		return  "item-list2";
 	 }
 

@@ -9,8 +9,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -80,18 +78,34 @@ public class TrProductService {
 	 * Pageable型の変数
 	 *
 	 */
-	public Page<TrProductEntity> findAll(String nameQuery, Pageable pageable) {
+	public List<TrProductEntity> findAll(String nameQuery) {
 		// クエリを複数キーワードに分割する
 		final List<String> keywords = splitQuery(nameQuery);
 		// 何もしないSpecificationを生成する。reduceの初期値として利用する
 		// Specification.where()にnullを渡せば、何もしないSpecificationが生成される
-		final Specification<TrProductEntity> zero = Specification.where((Specification<TrProductEntity>) null);
+		final Specification<TrProductEntity> zero = Specification
+				.where((Specification<TrProductEntity>) null);
 		// キーワードのリストをそれぞれSpecificationにマッピングして、andで結合する
 		final Specification<TrProductEntity> spec = keywords
 				.stream()
 				.map(this::nameContains)
 				.reduce(zero, Specification<TrProductEntity>::and);
 
-		return productRepository.findAll(spec, pageable);
+		return productRepository.findAll(spec);
 	}
+//	↑の元メソッド
+//	public Page<TrProductEntity> findAll(String nameQuery, Pageable pageable) {
+//		// クエリを複数キーワードに分割する
+//		final List<String> keywords = splitQuery(nameQuery);
+//		// 何もしないSpecificationを生成する。reduceの初期値として利用する
+//		// Specification.where()にnullを渡せば、何もしないSpecificationが生成される
+//		final Specification<TrProductEntity> zero = Specification.where((Specification<TrProductEntity>) null);
+//		// キーワードのリストをそれぞれSpecificationにマッピングして、andで結合する
+//		final Specification<TrProductEntity> spec = keywords
+//				.stream()
+//				.map(this::nameContains)
+//				.reduce(zero, Specification<TrProductEntity>::and);
+//
+//		return productRepository.findAll(spec);
+//	}
 }
