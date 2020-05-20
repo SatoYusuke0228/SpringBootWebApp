@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 
 /**
  * 商品表示関係のコントローラー
@@ -23,6 +24,7 @@ public class ShowItemsController {
 	@Autowired
 	private TrProductService productService;
 
+	//商品カテゴリーテーブルに関わる処理のインスタンス
 	@Autowired
 	private MsProductCategoryInventoryService categoryService;
 
@@ -35,7 +37,7 @@ public class ShowItemsController {
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/")
-	public String showRecommendedItems (Model model) {
+	public String showRecommendedItems(Model model) {
 
 		//全商品取得
 		List<TrProductEntity> recommendedItems = productService.findAll();
@@ -50,29 +52,63 @@ public class ShowItemsController {
 	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	@RequestMapping("/item-list/category/{categoryId}")
-	public String showItemsByCategory(@PathVariable int categoryId) {
+	@RequestMapping("/{pageName}/category/{categoryId}")
+	public String showItemsByCategory(
+			@PathVariable String pageName,
+			@PathVariable int categoryId)  {
 
 		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(categoryId);
-		session.setAttribute("itemsByCategory", itemsByCategory);
 
-		return "item-list";
+		try {
+			if (0 < itemsByCategory.get().getTrProductEntity().size()) {
+				pageName = "item-list";
+				session.setAttribute("itemsByCategory", itemsByCategory);
+			} else {
+				pageName = notFoundItemPage();
+			}
+		} catch(InternalServerError e) {
+			pageName = notFoundItemPage();
+		}
+
+		return pageName;
 	}
 
 	/**
 	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	@RequestMapping("/item-list2")
-	//public ModelAndView sendItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
-	public String sendItemsByKeyword(@RequestParam String keyword, Model model) {
+	//	@RequestMapping("/item-list2")
+	//	public ModelAndView sendItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
+	//
+	//		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
+	//		mav.setViewName("item-list2");
+	//		mav.addObject("itemsByKeyword", itemsByKeyword);
+	//
+	//		return mav;
+
+	/**
+	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/{pageName}")
+	public String sendItemsByKeyword(
+			@PathVariable String pageName,
+			@RequestParam String keyword,
+			Model model) {
+
 		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
-		model.addAttribute("itemsByKeyword", itemsByKeyword);
-//		mav.setViewName("item-list2");
-//		mav.addObject("itemsByKeyword", itemsByKeyword);
-//		return mav;
-		return "item-list2";
-	 }
+
+//		もしListの中に商品があれば、商品一覧ページに遷移
+//		しかし、Listの中に商品がなければ、商品が見つからないという結果を表示するページに遷移
+		if (0 < itemsByKeyword.size()) {
+			model.addAttribute("itemsByKeyword", itemsByKeyword);
+			pageName = "item-list2";
+		} else {
+			pageName = notFoundItemPage();
+		}
+
+		return pageName;
+	}
 
 	/**
 	 * 商品詳細ページを表示するためのメソッド
@@ -88,4 +124,14 @@ public class ShowItemsController {
 		model.addAttribute("selectedItem", selectedItem);
 		return "item";
 	}
+
+	/**
+	 * 商品がつからない場合に表示するページに遷移するために使用するメソッド
+	 * @author SatoYusuke0228
+	 */
+	@RequestMapping("/notFound")
+	public String notFoundItemPage() {
+		return "notFound";
+	}
+
 }
