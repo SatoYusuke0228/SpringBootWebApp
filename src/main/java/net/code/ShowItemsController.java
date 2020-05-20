@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 商品表示関係のコントローラー
@@ -64,19 +63,15 @@ public class ShowItemsController {
 	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-//	@RequestMapping(method=RequestMethod.GET)
-//	public ModelAndView getItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
-//		mav.setViewName("index");
-//		mav.addObject("keyword", keyword);
-//		return mav;
-//	 }
-
 	@RequestMapping("/item-list2")
-	public ModelAndView sendItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
+	//public ModelAndView sendItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
+	public String sendItemsByKeyword(@RequestParam String keyword, Model model) {
 		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
-		mav.setViewName("item-list2");
-		mav.addObject("itemsByKeyword", itemsByKeyword);
-		return mav;
+		model.addAttribute("itemsByKeyword", itemsByKeyword);
+//		mav.setViewName("item-list2");
+//		mav.addObject("itemsByKeyword", itemsByKeyword);
+//		return mav;
+		return "item-list2";
 	 }
 
 	/**
