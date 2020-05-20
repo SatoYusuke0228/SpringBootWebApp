@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 商品表示関係のコントローラー
@@ -49,10 +52,10 @@ public class ShowItemsController {
 	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	@RequestMapping("/item-list/{category}")
-	public String showItemsByCategory(@PathVariable int category) {
+	@RequestMapping("/item-list/{categoryId}")
+	public String showItemsByCategory(@PathVariable int categoryId) {
 
-		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(category);
+		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(categoryId);
 		session.setAttribute("itemsByCategory", itemsByCategory);
 
 		return "item-list";
@@ -62,11 +65,19 @@ public class ShowItemsController {
 	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	 @RequestMapping("/item-list2/search{nameQuery}")
-	 public String showItemsByKeyword(@PathVariable String nameQuery, Model model) {
-		List<TrProductEntity> itemsByKeyword = productService.findAll(nameQuery);
-		model.addAttribute("itemsByKeyword", itemsByKeyword);
-		return  "item-list2";
+//	@RequestMapping(method=RequestMethod.GET)
+//	public ModelAndView getItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
+//		mav.setViewName("index");
+//		mav.addObject("keyword", keyword);
+//		return mav;
+//	 }
+
+	@RequestMapping(method=RequestMethod.POST)
+	public ModelAndView sendItemsByKeyword(@RequestParam String keyword, ModelAndView mav) {
+		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
+		mav.setViewName("item-list2");
+		mav.addObject("itemsByKeyword", itemsByKeyword);
+		return mav;
 	 }
 
 	/**
@@ -77,7 +88,7 @@ public class ShowItemsController {
 	public String showItemPage(@PathVariable String id, Model model) {
 
 		//指定されたIDの商品を取得
-		TrProductEntity selectedItem = productService.getOne(id);
+		TrProductEntity selectedItem = productService.getItemInfo(id);
 
 		//EntityをModelに登録
 		model.addAttribute("selectedItem", selectedItem);

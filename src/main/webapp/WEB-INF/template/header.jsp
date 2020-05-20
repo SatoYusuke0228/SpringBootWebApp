@@ -27,8 +27,8 @@
 				</li>
 				<li class="search">
 					<!-- 検索ワードで検索可能にするボックスを用意する -->
-					<form action="/item-list2/search" method="get" class="search_container">
-						<input name="text" type="text" size="25" placeholder="キーワードで探す">
+					<form action="/item-list2" method="GET" class="search_container">
+						<input name="keyword" type="text" size="25" placeholder="キーワードで探す">
 						<input type="submit" value="&#xF002">
 					</form>
 				</li>

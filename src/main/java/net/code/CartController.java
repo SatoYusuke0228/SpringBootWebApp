@@ -47,7 +47,7 @@ public class CartController {
 		}
 
 		//カートにアイテムを追加
-		TrProductEntity selectedItem = productService.getOne(id);
+		TrProductEntity selectedItem = productService.getItemInfo(id);
 		CartItem cartItem = new CartItem(selectedItem);
 		cart.addCartItem(cartItem);
 

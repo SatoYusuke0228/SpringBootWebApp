@@ -32,7 +32,7 @@ public class TrProductService {
 	/**
 	 * 商品テーブルの中身をProductId別で取得するメソッド
 	 */
-	public TrProductEntity getOne(String id) {
+	public TrProductEntity getItemInfo(String id) {
 		return productRepository.getOne(id);
 	}
 
@@ -45,7 +45,8 @@ public class TrProductService {
 	private Specification<TrProductEntity> nameContains(String name) {
 		return new Specification<TrProductEntity>() {
 			@Override
-			public Predicate toPredicate(Root<TrProductEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<TrProductEntity> root, CriteriaQuery<?> query,
+					CriteriaBuilder cb) {
 				return cb.like(root.get(TrProductEntity_.productName), "%" + name + "%");
 			}
 		};
@@ -56,12 +57,12 @@ public class TrProductService {
 	 * "word1 word2 word3"のようなクエリ文をばらして
 	 * ["word1", "word2", "word3"]にするのに使用するヘルパー関数
 	 */
-	private List<String> splitQuery(String query) {
+	private List<String> splitQuery(String name) {
 		final String space = " ";
 		// 半角スペースと全角スペースの組み合わせのパターンを表す
 		final String spacesPattern = "[\\s　]+";
 		// 以上のパターンにマッチした部分を単一の半角スペースに変換する
-		final String monoSpaceQuery = query.replaceAll(spacesPattern, space);
+		final String monoSpaceQuery = name.replaceAll(spacesPattern, space);
 		// splitするとき、余分な空要素が生成されるのを防ぐため、先頭と末尾のスペースを削除する
 		final String trimmedMonoSpaceQuery = monoSpaceQuery.trim();
 		// 半角スペースでクエリをsplitする
@@ -69,16 +70,12 @@ public class TrProductService {
 	}
 
 	/*
-	 * 商品検索をAND検索する為の関数
-	 * @param
-	 * nameQuery 引数①
-	 * 商品テーブルの商品名
-	 *
-	 * pageable 引数②
-	 * Pageable型の変数
-	 *
+	 * 商品検索をAND検索する為の検索条件を返す関数
+	 * @param nameQuery 引数
+	 * 検索ボックスの検索ワード
+s	 * @return 検索条件
 	 */
-	public List<TrProductEntity> findAll(String nameQuery) {
+	public List<TrProductEntity> findByKeyword(String nameQuery) {
 		// クエリを複数キーワードに分割する
 		final List<String> keywords = splitQuery(nameQuery);
 		// 何もしないSpecificationを生成する。reduceの初期値として利用する
@@ -93,19 +90,4 @@ public class TrProductService {
 
 		return productRepository.findAll(spec);
 	}
-//	↑の元メソッド
-//	public Page<TrProductEntity> findAll(String nameQuery, Pageable pageable) {
-//		// クエリを複数キーワードに分割する
-//		final List<String> keywords = splitQuery(nameQuery);
-//		// 何もしないSpecificationを生成する。reduceの初期値として利用する
-//		// Specification.where()にnullを渡せば、何もしないSpecificationが生成される
-//		final Specification<TrProductEntity> zero = Specification.where((Specification<TrProductEntity>) null);
-//		// キーワードのリストをそれぞれSpecificationにマッピングして、andで結合する
-//		final Specification<TrProductEntity> spec = keywords
-//				.stream()
-//				.map(this::nameContains)
-//				.reduce(zero, Specification<TrProductEntity>::and);
-//
-//		return productRepository.findAll(spec);
-//	}
 }

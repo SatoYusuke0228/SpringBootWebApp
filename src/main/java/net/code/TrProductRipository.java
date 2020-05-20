@@ -10,6 +10,4 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @author SatoYusuke0228
  */
 public interface TrProductRipository extends
-		JpaRepository<TrProductEntity, String>, JpaSpecificationExecutor<TrProductEntity> {
-
-}
+		JpaRepository<TrProductEntity, String>, JpaSpecificationExecutor<TrProductEntity> {};
