@@ -51,7 +51,7 @@ public class ShowItemsController {
 	 * 商品一覧ページをカテゴリーごとに表示するためのメソッド
 	 * @author SatoYusuke0228
 	 */
-	@RequestMapping("/item-list/{categoryId}")
+	@RequestMapping("/item-list/category/{categoryId}")
 	public String showItemsByCategory(@PathVariable int categoryId) {
 
 		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(categoryId);
