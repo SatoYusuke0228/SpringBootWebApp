@@ -49,7 +49,7 @@
 								src="/image/${items.productPhotoFileName1}" height="350px"
 								width="275px" alt="${items.productPhotoFileName1}"> <span>
 									${items.productName} </span></li>
-							<li id="slide02"><img
+							<!-- <li id="slide02"><img
 								src="/image/${items.productPhotoFileName1}" height="350px"
 								width="275px" alt=" ${items.productName}"> <span>
 									${items.productName} </span></li>
@@ -61,6 +61,7 @@
 								src="/image/${items.productPhotoFileName1}" height="350px"
 								width="275px" alt=" ${items.productName}"> <span>
 									${items.productName} </span></li>
+							-->
 						</ul>
 					</div>
 					<!--/#slidemask-->
@@ -68,6 +69,7 @@
 						<li id="thumb01"><a href="item/${items.productId}"> <img
 								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
+						<!--
 						<li id="thumb02"><a href="item/${items.productId}"> <img
 								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
@@ -77,6 +79,7 @@
 						<li id="thumb04"><a href="item/${items.productId}"> <img
 								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
 						</a></li>
+						-->
 					</ul>
 				</div>
 				</c:forEach>

@@ -75,15 +75,16 @@ public class TrProductService {
 	 * 検索ボックスの検索ワード
 s	 * @return 検索条件
 	 */
-	public List<TrProductEntity> findByKeyword(String nameQuery) {
-		// クエリを複数キーワードに分割する
-		final List<String> keywords = splitQuery(nameQuery);
-		// 何もしないSpecificationを生成する。reduceの初期値として利用する
-		// Specification.where()にnullを渡せば、何もしないSpecificationが生成される
+	public List<TrProductEntity> findByKeyword(String keyword) {
+		// 複数キーワードに分割する
+		final List<String> splittedKeyword = splitQuery(keyword);
+		//何もしないSpecificationを生成する。
+		//reduceの初期値として利用する
+		//Specification.where()にnullを渡せば、何もしないSpecificationが生成される
 		final Specification<TrProductEntity> zero = Specification
 				.where((Specification<TrProductEntity>) null);
 		// キーワードのリストをそれぞれSpecificationにマッピングして、andで結合する
-		final Specification<TrProductEntity> spec = keywords
+		final Specification<TrProductEntity> spec = splittedKeyword
 				.stream()
 				.map(this::nameContains)
 				.reduce(zero, Specification<TrProductEntity>::and);

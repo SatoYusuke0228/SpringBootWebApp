@@ -1,7 +1,9 @@
 package net.code;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +42,23 @@ public class ShowItemsController {
 	public String showRecommendedItems(Model model) {
 
 		//全商品取得
-		List<TrProductEntity> recommendedItems = productService.findAll();
+		List<TrProductEntity> items = productService.findAll();
+
+		List<TrProductEntity> recommendedItems = new ArrayList<TrProductEntity>();
+
+		Random random = new Random();
+
+		while (items!=null) {
+
+			int recommendedItemsRandomID = random.nextInt(items.size());
+
+			recommendedItems.add(items.get(recommendedItemsRandomID));
+			System.out.println(recommendedItems.get(recommendedItemsRandomID).getProductName());
+
+			if (recommendedItems.size() == 3) {
+				break;
+			}
+		}
 
 		//取得した全販売商品データをmodelに保存
 		model.addAttribute("recommendedItems", recommendedItems);
@@ -55,7 +73,7 @@ public class ShowItemsController {
 	@RequestMapping("/{pageName}/category/{categoryId}")
 	public String showItemsByCategory(
 			@PathVariable String pageName,
-			@PathVariable int categoryId)  {
+			@PathVariable int categoryId) {
 
 		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(categoryId);
 
@@ -66,7 +84,7 @@ public class ShowItemsController {
 			} else {
 				pageName = notFoundItemPage();
 			}
-		} catch(InternalServerError e) {
+		} catch (InternalServerError e) {
 			pageName = notFoundItemPage();
 		}
 
@@ -98,8 +116,8 @@ public class ShowItemsController {
 
 		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
 
-//		もしListの中に商品があれば、商品一覧ページに遷移
-//		しかし、Listの中に商品がなければ、商品が見つからないという結果を表示するページに遷移
+		//		もしListの中に商品があれば、商品一覧ページに遷移
+		//		しかし、Listの中に商品がなければ、商品が見つからないという結果を表示するページに遷移
 		if (0 < itemsByKeyword.size()) {
 			model.addAttribute("itemsByKeyword", itemsByKeyword);
 			pageName = "item-list2";
