@@ -35,7 +35,9 @@ public class ShowItemsController {
 	private HttpSession session;
 
 	/**
-	 * TOPページで商品情報を取得するためのメソッド
+	 * TOPページで商品情報を取得するためのメソッド。
+	 * このメソッドで取得した商品情報は、TOPページのスライド写真として掲載される。
+	 *
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/")
@@ -44,26 +46,35 @@ public class ShowItemsController {
 		//全商品取得
 		List<TrProductEntity> items = productService.findAll();
 
-		List<TrProductEntity> recommendedItems = new ArrayList<TrProductEntity>();
-
-		Random random = new Random();
-
-		while (items!=null) {
-
-			int recommendedItemsRandomID = random.nextInt(items.size());
-
-			recommendedItems.add(items.get(recommendedItemsRandomID));
-			System.out.println(recommendedItems.get(recommendedItemsRandomID).getProductName());
-
-			if (recommendedItems.size() == 3) {
-				break;
-			}
-		}
-
-		//取得した全販売商品データをmodelに保存
-		model.addAttribute("recommendedItems", recommendedItems);
+		//取得した全販売商品データをランダムで商品ピックアップするメソッドに渡してmodelに保存
+		model.addAttribute("recommendedItems", randomPickupRecommendedItems(items));
 
 		return "index";
+	}
+
+	/**
+	 * TOPページで商品情報を取得するためのヘルパー関数。
+	 * 全商品Listを受け取り、ランダムで４種オススメ商品をピックアップして格納したListを戻り値として返す。
+	 *
+	 * @param items
+	 * 引数。全商品が格納されているList
+	 *
+	 * @author SatoYusuke0228
+	 */
+	private List<TrProductEntity> randomPickupRecommendedItems(List<TrProductEntity> items) {
+
+		//オススメの商品リストのインスタンスを作成
+		List<TrProductEntity> recommendedItems = new ArrayList<TrProductEntity>();
+
+		//ランダムクラスのインスタンスを作成
+		Random random = new Random();
+
+		//オススメ商品Listのサイズが４つになるまで商品IDをランダム抽選
+		while (recommendedItems.size() != 4) {
+			recommendedItems.add(items.get(random.nextInt(items.size() - 1)));
+		}
+
+		return recommendedItems;
 	}
 
 	/**
@@ -106,6 +117,7 @@ public class ShowItemsController {
 
 	/**
 	 * 商品一覧ページを検索ワードごとに表示するためのメソッド
+	 *
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/{pageName}")
@@ -116,8 +128,8 @@ public class ShowItemsController {
 
 		List<TrProductEntity> itemsByKeyword = productService.findByKeyword(keyword);
 
-		//		もしListの中に商品があれば、商品一覧ページに遷移
-		//		しかし、Listの中に商品がなければ、商品が見つからないという結果を表示するページに遷移
+		//もしListの中に商品があれば、商品一覧ページに遷移
+		//しかし、Listの中に商品がなければ、商品が見つからないという結果を表示するページに遷移
 		if (0 < itemsByKeyword.size()) {
 			model.addAttribute("itemsByKeyword", itemsByKeyword);
 			pageName = "item-list2";

@@ -41,45 +41,44 @@
 		<!-- コンテンツ 3ページ目 -->
 		<section class="area">
 			<div class="area3">
+			<%List<TrProductEntity> items = (List<TrProductEntity>) request.getAttribute("recommendedItems");%>
+
 			<c:forEach items="${recommendedItems}" var="items">
 				<div id="slidewrap">
 					<div id="slidemask">
 						<ul id="photo">
 							<li id="slide01"><img
-								src="/image/${items.productPhotoFileName1}" height="350px"
-								width="275px" alt="${items.productPhotoFileName1}"> <span>
-									${items.productName} </span></li>
-							<!-- <li id="slide02"><img
-								src="/image/${items.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${items.productName}"> <span>
-									${items.productName} </span></li>
+								src="/image/<%=items.get(0).getProductPhotoFileName1()%>" height="350px"
+								width="275px" alt="<%=items.get(0).getProductName()%>"> <span>
+									<%=items.get(0).getProductName()%> </span></li>
+							<li id="slide02"><img
+								src="/image/<%=items.get(1).getProductPhotoFileName1()%>" height="350px"
+								width="275px" alt="<%=items.get(1).getProductName()%>"> <span>
+									<%=items.get(1).getProductName()%> </span></li>
 							<li id="slide03"><img
-								src="/image/${items.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${items.productName}"> <span>
-									${items.productName} </span></li>
+								src="/image/<%=items.get(2).getProductPhotoFileName1()%>" height="350px"
+								width="275px" alt="<%=items.get(2).getProductName()%>"> <span>
+									<%=items.get(2).getProductName()%> </span></li>
 							<li id="slide04"><img
-								src="/image/${items.productPhotoFileName1}" height="350px"
-								width="275px" alt=" ${items.productName}"> <span>
-									${items.productName} </span></li>
-							-->
+								src="/image/<%=items.get(3).getProductPhotoFileName1()%>" height="350px"
+								width="275px" alt="<%=items.get(3).getProductName()%>"> <span>
+									<%=items.get(3).getProductName()%> </span></li>
 						</ul>
 					</div>
 					<!--/#slidemask-->
 					<ul id="thumb">
-						<li id="thumb01"><a href="item/${items.productId}"> <img
-								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
+						<li id="thumb01"><a href="item/<%=items.get(0).getProductId()%>"> <img
+								src="/image/<%=items.get(0).getProductPhotoFileName1()%>" alt="<%=items.get(0).getProductName()%>">
 						</a></li>
-						<!--
-						<li id="thumb02"><a href="item/${items.productId}"> <img
-								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
+						<li id="thumb02"><a href="item/<%=items.get(1).getProductId()%>"> <img
+								src="/image/<%=items.get(1).getProductPhotoFileName1()%>" alt="<%=items.get(1).getProductName()%>">
 						</a></li>
-						<li id="thumb03"><a href="item/${items.productId}"> <img
-								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
+						<li id="thumb03"><a href="item/<%=items.get(2).getProductId()%>"> <img
+								src="/image/<%=items.get(2).getProductPhotoFileName1()%>" alt="<%=items.get(2).getProductName()%>">
 						</a></li>
-						<li id="thumb04"><a href="item/${items.productId}"> <img
-								src="/image/${items.productPhotoFileName1}" alt="${items.productName}">
+						<li id="thumb04"><a href="item/<%=items.get(3).getProductId()%>"> <img
+								src="/image/<%=items.get(3).getProductPhotoFileName1()%>" alt="<%=items.get(3).getProductName()%>">
 						</a></li>
-						-->
 					</ul>
 				</div>
 				</c:forEach>
