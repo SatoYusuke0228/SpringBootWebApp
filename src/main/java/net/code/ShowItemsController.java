@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class ShowItemsController {
 	@Autowired
 	private HttpSession session;
 
+	@Autowired
+	private HttpServletRequest request;
+
 	/**
 	 * TOPページで商品情報を取得するためのメソッド。
 	 * このメソッドで取得した商品情報は、TOPページのスライド写真として掲載される。
@@ -41,13 +45,13 @@ public class ShowItemsController {
 	 * @author SatoYusuke0228
 	 */
 	@RequestMapping("/")
-	public String showRecommendedItems(Model model) {
+	public String showRecommendedItems() {
 
 		//全商品取得
 		List<TrProductEntity> items = productService.findAll();
 
 		//取得した全販売商品データをランダムで商品ピックアップするメソッドに渡してmodelに保存
-		model.addAttribute("recommendedItems", randomPickupRecommendedItems(items));
+		request.setAttribute("recommendedItems", randomPickupRecommendedItems(items));
 
 		return "index";
 	}
@@ -70,10 +74,26 @@ public class ShowItemsController {
 		Random random = new Random();
 
 		//オススメ商品Listのサイズが４つになるまで商品IDをランダム抽選
-		while (recommendedItems.size() != 4) {
-			recommendedItems.add(items.get(random.nextInt(items.size() - 1)));
-		}
+		while (recommendedItems.size() < 4) {
 
+			//ランダムに抽出した商品と、すでにオススメ商品Listに含まれる商品の重複数
+			int duplication = 0;
+
+			//商品IDをランダム抽選
+			int randomPickupRecommendedItemsID = random.nextInt(items.size() - 1);
+
+			//ランダムに抽出した商品と、すでにオススメ商品Listに含まれる商品が重複していないかチェック
+			for (int i = recommendedItems.size(); 0 < i; i--) {
+				if (items.get(randomPickupRecommendedItemsID)
+						== recommendedItems.get(i - 1)) {
+					duplication++;
+				}
+			}
+			//重複していなかった場合は、オススメ商品Listに格納する
+			if (duplication == 0) {
+				recommendedItems.add(items.get(randomPickupRecommendedItemsID));
+			}
+		}
 		return recommendedItems;
 	}
 
