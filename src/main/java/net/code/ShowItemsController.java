@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 
 /**
  * 商品表示関係のコントローラー
@@ -35,6 +34,7 @@ public class ShowItemsController {
 	@Autowired
 	private HttpSession session;
 
+	//リクエストスコープのインスタンス
 	@Autowired
 	private HttpServletRequest request;
 
@@ -79,19 +79,18 @@ public class ShowItemsController {
 			//ランダムに抽出した商品と、すでにオススメ商品Listに含まれる商品の重複数
 			int duplication = 0;
 
-			//商品IDをランダム抽選
-			int randomPickupRecommendedItemsID = random.nextInt(items.size() - 1);
+			//商品をランダム抽選
+			int randomIndex = random.nextInt(items.size() - 1);
 
 			//ランダムに抽出した商品と、すでにオススメ商品Listに含まれる商品が重複していないかチェック
 			for (int i = recommendedItems.size(); 0 < i; i--) {
-				if (items.get(randomPickupRecommendedItemsID)
-						== recommendedItems.get(i - 1)) {
+				if (items.get(randomIndex) == recommendedItems.get(i - 1)) {
 					duplication++;
 				}
 			}
-			//重複していなかった場合は、オススメ商品Listに格納する
-			if (duplication == 0) {
-				recommendedItems.add(items.get(randomPickupRecommendedItemsID));
+			//重複していない、かつ商品カテゴリーが(0)の場合のみ、オススメ商品Listに格納する
+			if (duplication == 0 && items.get(randomIndex).getProductCategoryId() == 0) {
+				recommendedItems.add(items.get(randomIndex));
 			}
 		}
 		return recommendedItems;
@@ -108,17 +107,12 @@ public class ShowItemsController {
 
 		Optional<MsProductCategoryInventoryEntity> itemsByCategory = categoryService.findById(categoryId);
 
-		try {
-			if (0 < itemsByCategory.get().getTrProductEntity().size()) {
-				pageName = "item-list";
-				session.setAttribute("itemsByCategory", itemsByCategory);
-			} else {
-				pageName = notFoundItemPage();
-			}
-		} catch (InternalServerError e) {
+		if (0 < itemsByCategory.get().getTrProductEntity().size()) {
+			pageName = "item-list";
+			session.setAttribute("itemsByCategory", itemsByCategory);
+		} else {
 			pageName = notFoundItemPage();
 		}
-
 		return pageName;
 	}
 
@@ -183,5 +177,4 @@ public class ShowItemsController {
 	public String notFoundItemPage() {
 		return "notFound";
 	}
-
 }
